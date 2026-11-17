@@ -1,0 +1,20 @@
+name: YouTube-Test
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Zugang pruefen
+        env:
+          CID: ${{ secrets.YT_CLIENT_ID }}
+          CSEC: ${{ secrets.YT_CLIENT_SECRET }}
+          RT: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: |
+          RESP=$(curl -s https://oauth2.googleapis.com/token -d client_id="$CID" -d client_secret="$CSEC" -d refresh_token="$RT" -d grant_type=refresh_token)
+          TOKEN=$(echo "$RESP" | jq -r .access_token)
+          if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then echo "FEHLER: $(echo "$RESP" | jq -r .error)"; exit 1; fi
+          echo "::add-mask::$TOKEN"
+          echo "== YouTube-Kanal =="
+          curl -s -H "Authorization: Bearer $TOKEN" "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&mine=true" | jq '.items[] | {Kanal: .snippet.title, Abos: .statistics.subscriberCount, Videos: .statistics.videoCount, Aufrufe: .statistics.viewCount}'
+          echo "== Google Drive =="
+          curl -s -o /dev/null -w "Drive-Zugriff: HTTP %{http_code}\n" -H "Authorization: Bearer $TOKEN" "https://www.googleapis.com/drive/v3/files?pageSize=1"
