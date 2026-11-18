@@ -12,4 +12,5 @@ Drive: /clips/waterfall-iceland.MOV (video/quicktime, 73.2 MB)
 Drive: /clips/mountains_iceland.MOV (video/quicktime, 49.5 MB)
 Drive: /clips/church_iceland.MOV (video/quicktime, 22.0 MB)
 Drive: /clips/waterfall_iceland.MOV (video/quicktime, 58.3 MB)
-{"ok": true, "mode": "sichtung", "clips": 6, "music": 4, "time": "2026-11-18T01:39:27+00:00"}
+Clip: INSANE Lava Flow from 2023 Iceland Volcano â Litli-HrÃºtur Eruption 59.03 s 1278x720 GPS=
+{"ok": true, "mode": "sichtung", "clips": 7, "music": 4, "time": "2026-11-18T01:40:21+00:00"}
