@@ -1,4 +1,2 @@
-Hochformat 1440x2560: Originaldatei unveraendert
-Hochgeladen: https://youtu.be/qy07jPZ5jWE (Status: public, geplant: -, KI: True)
-Playlist 'AI Videos': ok
-{"ok": true, "mode": "passthrough", "url": "https://youtu.be/qy07jPZ5jWE", "title": "AI turned me into a lightning wizard ⚡ #AIvideo #shorts", "privacy": "public", "publishAt": null, "time": "2026-11-18T17:32:45+00:00"}
+Geaendert: qy07jPZ5jWE -> Seedance 2.0 turned me into a lightning wizard ⚡ #AIvideo #shorts
+{"ok": true, "mode": "update", "video": "qy07jPZ5jWE", "title": "Seedance 2.0 turned me into a lightning wizard ⚡ #AIvideo #shorts", "time": "2026-11-18T17:33:45+00:00"}
