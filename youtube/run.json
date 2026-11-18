@@ -1,1 +1,97 @@
-{"mode": "sichtung", "note": "Auftrag 3: Sichtung aller Clips"}
+{
+ "mode": "montage",
+ "privacy": "private",
+ "note": "Auftrag 4: 30-Sekunden-Montage Snaefellsnes",
+ "title": "Iceland doesn't look real 🇮🇸 Snæfellsnes in 30 seconds #shorts",
+ "description": "30 seconds on Iceland's Snæfellsnes peninsula – Kirkjufellsfoss, Kirkjufell, the lava fields below Snæfellsjökull and the little church of Hellnar.\n\n📍 Snæfellsnes, Iceland 🇮🇸\n🎵 Fly Away – The Soundlings (YouTube Audio Library)\n📸 Instagram: @p.x.mgmt\n🔔 Subscribe for more hidden places.\n\n#iceland #snaefellsnes #kirkjufell #waterfall #travel #shorts",
+ "tags": [
+  "Iceland",
+  "Snaefellsnes",
+  "Kirkjufell",
+  "Kirkjufellsfoss",
+  "Snaefellsjokull",
+  "Hellnar",
+  "waterfall",
+  "Iceland travel",
+  "travel shorts",
+  "nature"
+ ],
+ "music": "Fly Away - The Soundlings.mp3",
+ "music_start": 0,
+ "transition": 0.3,
+ "hook": "Iceland doesn't look real 🇮🇸",
+ "cta": "Follow for more Iceland 🌍",
+ "plan": [
+  {
+   "clip": "waterfall_iceland.MOV",
+   "start": 2.0,
+   "dur": 2.508,
+   "speed": 0.6
+  },
+  {
+   "clip": "mountainwaterfall.MOV",
+   "start": 7.5,
+   "dur": 2.508,
+   "label": "Kirkjufellsfoss"
+  },
+  {
+   "clip": "waterfalliceland.MOV",
+   "start": 4.0,
+   "dur": 1.881
+  },
+  {
+   "clip": "waterfall_iceland.MOV",
+   "start": 6.5,
+   "dur": 1.881,
+   "speed": 0.6
+  },
+  {
+   "clip": "mountainwaterfall.MOV",
+   "start": 0.5,
+   "dur": 2.508,
+   "label": "Kirkjufell"
+  },
+  {
+   "clip": "mountains_iceland.MOV",
+   "start": 0.5,
+   "dur": 2.508,
+   "label": "Snæfellsjökull"
+  },
+  {
+   "clip": "mountains_iceland.MOV",
+   "start": 8.0,
+   "dur": 1.881
+  },
+  {
+   "clip": "waterfall-iceland.MOV",
+   "start": 0.5,
+   "dur": 2.508
+  },
+  {
+   "clip": "waterfall-iceland.MOV",
+   "start": 11.5,
+   "dur": 2.508
+  },
+  {
+   "clip": "church_iceland.MOV",
+   "start": 3.6,
+   "dur": 2.508,
+   "label": "Hellnar"
+  },
+  {
+   "clip": "mountainwaterfall.MOV",
+   "start": 13.0,
+   "dur": 2.508
+  },
+  {
+   "clip": "waterfalliceland.MOV",
+   "start": 10.5,
+   "dur": 2.508
+  },
+  {
+   "clip": "waterfalliceland.MOV",
+   "start": 13.5,
+   "dur": 5.016
+  }
+ ]
+}
