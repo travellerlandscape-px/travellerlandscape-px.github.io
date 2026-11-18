@@ -137,7 +137,7 @@ def segment_filter(i, seg, src_seconds):
     if label:
         pathlib.Path(f"lab{i}.txt").write_text(label, encoding="utf-8")
         f += (f",drawtext=fontfile={FONT}:textfile=lab{i}.txt:fontcolor=white:fontsize=44:"
-              "x=(w-text_w)/2:y=h*0.80:shadowcolor=black@0.7:shadowx=2:shadowy=2:"
+              "x=(w-text_w)/2:y=h*0.64:shadowcolor=black@0.7:shadowx=2:shadowy=2:"
               f"alpha='min(1,t/0.3)*min(1,({dur:.2f}-t)/0.3)'")
     return f + f",format=yuv420p[s{i}]"
 
