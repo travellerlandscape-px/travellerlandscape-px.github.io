@@ -1,1 +1,83 @@
-{"mode": "stats", "note": "Statistik 2026-11-18T14:14"}
+{
+ "mode": "montage",
+ "privacy": "private",
+ "note": "Auftrag: Lava-Story-Fassung (Test Story vs. Montage)",
+ "title": "This lava is over 1,100 °C 🔥 Iceland volcano #shorts",
+ "description": "The Litli-Hrútur eruption on Iceland's Reykjanes peninsula started on 10 July 2023 – about 30 km from Reykjavík. Thousands of people hiked roughly 20 km (round trip) to see it. Basaltic lava like this is well over 1,100 °C hot.\n\nFilmed with a drone over the crater.\n\n📍 Litli-Hrútur, Reykjanes, Iceland 🇮🇸\n📸 Instagram: @p.x.mgmt\n🔔 Subscribe for more stories from Iceland.\n\n#iceland #volcano #lava #eruption #reykjanes #shorts",
+ "tags": [
+  "Iceland volcano",
+  "lava",
+  "eruption",
+  "Litli-Hrutur",
+  "Reykjanes",
+  "Fagradalsfjall",
+  "volcano",
+  "drone",
+  "Iceland",
+  "shorts"
+ ],
+ "music": "At Launch.mp3",
+ "music_start": 0,
+ "transition": 0.3,
+ "transitions": [
+  "fade",
+  "smoothleft",
+  "fade"
+ ],
+ "location": {
+  "lat": 63.918,
+  "lng": -22.245
+ },
+ "recorded": "2023-07-20",
+ "playlists": [
+  "Iceland"
+ ],
+ "plan": [
+  {
+   "clip": "INSANE Lava",
+   "start": 36.0,
+   "dur": 4.6,
+   "sharpen": true,
+   "card": "This lava is over 1,100 °C",
+   "speed": 0.8,
+   "zoom": [
+    1.0,
+    1.15
+   ]
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 12.3,
+   "dur": 4.6,
+   "sharpen": true,
+   "card": "It erupted on July 10, 2023 – just 30 km from Reykjavík",
+   "zoom": [
+    1.15,
+    1.03
+   ]
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 40.5,
+   "dur": 4.6,
+   "sharpen": true,
+   "card": "Thousands hiked 20 km just to see it",
+   "speed": 0.8,
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 51.0,
+   "dur": 4.6,
+   "sharpen": true,
+   "card": "Follow for more Iceland",
+   "zoom": [
+    1.12,
+    1.0
+   ]
+  }
+ ]
+}

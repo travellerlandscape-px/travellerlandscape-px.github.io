@@ -163,6 +163,8 @@ def segment_filter(i, seg, src_seconds):
          f"trim=0:{dur:.3f},setpts=PTS-STARTPTS")
     if seg.get("sharpen"):
         f += ",unsharp=5:5:0.8:5:5:0.0"
+    if seg.get("card"):  # grosse Story-Texttafel oben, fuer die Dauer der Einstellung
+        f += "," + ",".join(overlay_text(seg["card"], 0.15, dur - 0.15))
     label = seg.get("label")
     if label:
         label = re.sub(r"[^\u0000-\uFFFF]|[\u2600-\u27BF\uFE0F]", "", label).strip()
