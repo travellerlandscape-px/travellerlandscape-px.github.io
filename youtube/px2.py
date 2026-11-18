@@ -87,8 +87,24 @@ def tempo(path):
     return round(60 * fps / lag, 1)
 
 
+def drive_overview(tok):
+    """Alle Dateien im Hauptordner und in den Unterordnern auflisten (zur Kontrolle)."""
+    root = os.environ["DRIVE_FOLDER_ID"]
+    lines = []
+    for f in px.drive_list(tok, root):
+        lines.append(f"/{f['name']} ({f['mimeType']}, {round(int(f.get('size', 0) or 0) / 1e6, 1)} MB)")
+        if f["mimeType"] == "application/vnd.google-apps.folder":
+            for g in px.drive_list(tok, f["id"]):
+                lines.append(f"/{f['name']}/{g['name']} ({g['mimeType']}, "
+                             f"{round(int(g.get('size', 0) or 0) / 1e6, 1)} MB)")
+    for l in lines:
+        px.log("Drive: " + l)
+    return lines
+
+
 def sichtung():
     tok = px.token()
+    drive_overview(tok)
     sub = {f["name"].lower(): f["id"] for f in px.drive_list(tok, os.environ["DRIVE_FOLDER_ID"])
            if f["mimeType"] == "application/vnd.google-apps.folder"}
     OUT.mkdir(parents=True, exist_ok=True)
