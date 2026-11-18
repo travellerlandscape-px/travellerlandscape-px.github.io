@@ -1,0 +1,232 @@
+{
+ "channel_status": {
+  "privacyStatus": "public",
+  "isLinked": true,
+  "longUploadsStatus": "allowed",
+  "isChannelMonetizationEnabled": false
+ },
+ "videos": [
+  {
+   "id": "e1WU334tGz8",
+   "title": "Seedance 2.0 made this AI fight scene from ONE photo 🔥 #AIvi",
+   "published": "2026-11-18T17:43:32Z",
+   "views": "2",
+   "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "youtube",
+    "embeddable": true,
+    "publicStatsViewable": true,
+    "madeForKids": false,
+    "selfDeclaredMadeForKids": false
+   },
+   "region": null,
+   "licensedContent": false,
+   "contentRating": {},
+   "processing": "succeeded"
+  },
+  {
+   "id": "qy07jPZ5jWE",
+   "title": "Seedance 2.0 turned me into a lightning wizard ⚡ #AIvideo #s",
+   "published": "2026-11-18T17:33:15Z",
+   "views": "1",
+   "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "youtube",
+    "embeddable": true,
+    "publicStatsViewable": true,
+    "madeForKids": false,
+    "selfDeclaredMadeForKids": false
+   },
+   "region": null,
+   "licensedContent": false,
+   "contentRating": {},
+   "processing": "succeeded"
+  },
+  {
+   "id": "tQ9ooOfBnxU",
+   "title": "This lava is over 1,100 °C 🔥 Iceland volcano #shorts",
+   "published": "2026-11-18T14:25:31Z",
+   "views": "4",
+   "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "youtube",
+    "embeddable": true,
+    "publicStatsViewable": true,
+    "madeForKids": false,
+    "selfDeclaredMadeForKids": false
+   },
+   "region": null,
+   "licensedContent": false,
+   "contentRating": {},
+   "processing": "succeeded"
+  },
+  {
+   "id": "46lfwAowMNk",
+   "title": "Iceland volcano: boiling lava up close 🔥 #shorts",
+   "published": "2026-11-18T01:47:24Z",
+   "views": "226",
+   "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "youtube",
+    "embeddable": true,
+    "publicStatsViewable": true,
+    "madeForKids": false,
+    "selfDeclaredMadeForKids": false
+   },
+   "region": null,
+   "licensedContent": false,
+   "contentRating": {},
+   "processing": "succeeded"
+  },
+  {
+   "id": "1iS2A4_FKAc",
+   "title": "Iceland doesn't look real 🇮🇸 Snæfellsnes in 30 seconds #shor",
+   "published": "2026-11-18T01:21:35Z",
+   "views": "537",
+   "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "youtube",
+    "embeddable": true,
+    "publicStatsViewable": true,
+    "madeForKids": false,
+    "selfDeclaredMadeForKids": false
+   },
+   "region": null,
+   "licensedContent": false,
+   "contentRating": {},
+   "processing": "succeeded"
+  },
+  {
+   "id": "QHEzHWpzvwQ",
+   "title": "This tiny Icelandic church hides a Viking story 🇮🇸 #shorts",
+   "published": "2026-11-18T00:43:06Z",
+   "views": "1068",
+   "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "youtube",
+    "embeddable": true,
+    "publicStatsViewable": true,
+    "madeForKids": false,
+    "selfDeclaredMadeForKids": false
+   },
+   "region": null,
+   "licensedContent": false,
+   "contentRating": {},
+   "processing": "succeeded"
+  },
+  {
+   "id": "ZaVCm2yDZ5E",
+   "title": "Iceland Sea Rocks",
+   "published": "2023-08-26T13:43:38Z",
+   "views": "8",
+   "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "youtube",
+    "embeddable": true,
+    "publicStatsViewable": true,
+    "madeForKids": false
+   },
+   "region": {
+    "blocked": [
+     "BY",
+     "RU"
+    ]
+   },
+   "licensedContent": false,
+   "contentRating": {},
+   "processing": "succeeded"
+  },
+  {
+   "id": "hn2bKOqBDl0",
+   "title": "snaefellsnes National Park",
+   "published": "2023-08-26T13:41:46Z",
+   "views": "40",
+   "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "youtube",
+    "embeddable": true,
+    "publicStatsViewable": true,
+    "madeForKids": false
+   },
+   "region": null,
+   "licensedContent": false,
+   "contentRating": {},
+   "processing": "succeeded"
+  },
+  {
+   "id": "5Et7eERwbIA",
+   "title": "Iceland Sword Bridge",
+   "published": "2023-08-26T13:39:56Z",
+   "views": "280",
+   "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "youtube",
+    "embeddable": true,
+    "publicStatsViewable": true,
+    "madeForKids": false
+   },
+   "region": null,
+   "licensedContent": false,
+   "contentRating": {},
+   "processing": "succeeded"
+  },
+  {
+   "id": "qy_QWJ41Ar8",
+   "title": "INSANE Lava Flow from 2023 Iceland Volcano – Litli-Hrútur Er",
+   "published": "2023-08-09T21:43:00Z",
+   "views": "113",
+   "status": {
+    "uploadStatus": "processed",
+    "privacyStatus": "public",
+    "license": "youtube",
+    "embeddable": true,
+    "publicStatsViewable": true,
+    "madeForKids": false,
+    "selfDeclaredMadeForKids": false
+   },
+   "region": {
+    "blocked": [
+     "RU"
+    ]
+   },
+   "licensedContent": false,
+   "contentRating": {},
+   "processing": "succeeded"
+  }
+ ],
+ "analytics": {
+  "e1WU334tGz8": {
+   "insightTrafficSourceType": [],
+   "day": []
+  },
+  "qy07jPZ5jWE": {
+   "insightTrafficSourceType": [],
+   "day": []
+  },
+  "tQ9ooOfBnxU": {
+   "insightTrafficSourceType": [],
+   "day": []
+  },
+  "46lfwAowMNk": {
+   "insightTrafficSourceType": [],
+   "day": []
+  },
+  "1iS2A4_FKAc": {
+   "insightTrafficSourceType": [],
+   "day": []
+  },
+  "QHEzHWpzvwQ": {
+   "insightTrafficSourceType": [],
+   "day": []
+  }
+ }
+}

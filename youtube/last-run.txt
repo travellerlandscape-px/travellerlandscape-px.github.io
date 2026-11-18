@@ -1,4 +1,24 @@
-Querformat 2560x1440 -> 9:16 zugeschnitten (Ton unveraendert)
-Hochgeladen: https://youtu.be/e1WU334tGz8 (Status: private, geplant: 2026-11-19T14:00:00Z, KI: True)
-Playlist 'AI Videos': ok
-{"ok": true, "mode": "passthrough", "url": "https://youtu.be/e1WU334tGz8", "title": "Seedance 2.0 made this AI fight scene from ONE photo 🔥 #AIvideo #shorts", "privacy": "private", "publishAt": "2026-11-19T14:00:00Z", "time": "2026-11-18T17:34:49+00:00"}
+Kanal-Status: {"privacyStatus": "public", "isLinked": true, "longUploadsStatus": "allowed", "isChannelMonetizationEnabled": false}
+2026-11-18T17:43     2 | Seedance 2.0 made this AI fight scene from ONE photo 🔥 #AIvi | upload=processed privacy=public kids=False KI=None embed=True region=None rating={} rejection=None failure=None
+2026-11-18T17:33     1 | Seedance 2.0 turned me into a lightning wizard ⚡ #AIvideo #s | upload=processed privacy=public kids=False KI=None embed=True region=None rating={} rejection=None failure=None
+2026-11-18T14:25     4 | This lava is over 1,100 °C 🔥 Iceland volcano #shorts | upload=processed privacy=public kids=False KI=None embed=True region=None rating={} rejection=None failure=None
+2026-11-18T01:47   226 | Iceland volcano: boiling lava up close 🔥 #shorts | upload=processed privacy=public kids=False KI=None embed=True region=None rating={} rejection=None failure=None
+2026-11-18T01:21   537 | Iceland doesn't look real 🇮🇸 Snæfellsnes in 30 seconds #shor | upload=processed privacy=public kids=False KI=None embed=True region=None rating={} rejection=None failure=None
+2026-11-18T00:43  1068 | This tiny Icelandic church hides a Viking story 🇮🇸 #shorts | upload=processed privacy=public kids=False KI=None embed=True region=None rating={} rejection=None failure=None
+2023-08-26T13:43     8 | Iceland Sea Rocks | upload=processed privacy=public kids=False KI=None embed=True region={'blocked': ['BY', 'RU']} rating={} rejection=None failure=None
+2023-08-26T13:41    40 | snaefellsnes National Park | upload=processed privacy=public kids=False KI=None embed=True region=None rating={} rejection=None failure=None
+2023-08-26T13:39   280 | Iceland Sword Bridge | upload=processed privacy=public kids=False KI=None embed=True region=None rating={} rejection=None failure=None
+2023-08-09T21:43   113 | INSANE Lava Flow from 2023 Iceland Volcano – Litli-Hrútur Er | upload=processed privacy=public kids=False KI=None embed=True region={'blocked': ['RU']} rating={} rejection=None failure=None
+Analytics e1WU334tGz8 insightTrafficSourceType: []
+Analytics e1WU334tGz8 day: []
+Analytics qy07jPZ5jWE insightTrafficSourceType: []
+Analytics qy07jPZ5jWE day: []
+Analytics tQ9ooOfBnxU insightTrafficSourceType: []
+Analytics tQ9ooOfBnxU day: []
+Analytics 46lfwAowMNk insightTrafficSourceType: []
+Analytics 46lfwAowMNk day: []
+Analytics 1iS2A4_FKAc insightTrafficSourceType: []
+Analytics 1iS2A4_FKAc day: []
+Analytics QHEzHWpzvwQ insightTrafficSourceType: []
+Analytics QHEzHWpzvwQ day: []
+{"ok": true, "mode": "diagnose", "time": "2026-11-18T18:01:05+00:00"}
