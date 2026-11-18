@@ -92,16 +92,25 @@ def sichtung():
     sub = {f["name"].lower(): f["id"] for f in px.drive_list(tok, os.environ["DRIVE_FOLDER_ID"])
            if f["mimeType"] == "application/vnd.google-apps.folder"}
     OUT.mkdir(parents=True, exist_ok=True)
+    old = {}
+    if (OUT / "index.json").exists():  # schon gesichtete Clips nicht erneut laden
+        prev = json.loads((OUT / "index.json").read_text())
+        old = {c["id"]: c for c in prev.get("clips", [])}
+        old.update({"music:" + m["name"]: m for m in prev.get("music", [])})
     idx = {"date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M"),
            "clips": [], "music": []}
     for c in sorted(px.drive_list(tok, sub["clips"]), key=lambda f: f["name"].lower()):
         if not c["name"].lower().endswith(px.VIDEO_EXT):
             continue
+        if c["id"] in old and (OUT / old[c["id"]]["sheet"]).exists():
+            idx["clips"].append(old[c["id"]])
+            continue
         src = "clip" + pathlib.Path(c["name"]).suffix.lower()
         px.drive_download(tok, c["id"], src)
         info = probe(src)
         sheet = OUT / f"{safe(c['name'])}.jpg"
-        info["frames_at"] = contact_sheet(src, info["seconds"], sheet)
+        n = 6 if info["seconds"] <= 20 else min(12, int(info["seconds"] // 3))
+        info["frames_at"] = contact_sheet(src, info["seconds"], sheet, n)
         info.update({"name": c["name"], "id": c["id"], "sheet": sheet.name,
                      "mb": round(int(c.get("size", 0)) / 1e6, 1)})
         idx["clips"].append(info)
@@ -109,6 +118,9 @@ def sichtung():
         os.remove(src)
     for m in px.drive_list(tok, sub.get("musik", "")) if "musik" in sub else []:
         if not m["name"].lower().endswith(px.AUDIO_EXT):
+            continue
+        if "music:" + m["name"] in old:
+            idx["music"].append(old["music:" + m["name"]])
             continue
         src = "music" + pathlib.Path(m["name"]).suffix.lower()
         px.drive_download(tok, m["id"], src)
