@@ -418,6 +418,46 @@ def musik(job):
     return {"ok": True, "mode": "musik", "neu": got, "gesamt": len(lic)}
 
 
+def passthrough(job):
+    """Clip 1:1 hochladen. Hochformat: Originaldatei unveraendert. Querformat: nur auf 9:16
+    zuschneiden (Mitte), Ton unveraendert uebernehmen."""
+    tok = px.token()
+    sub = {f["name"].lower(): f["id"] for f in px.drive_list(tok, os.environ["DRIVE_FOLDER_ID"])
+           if f["mimeType"] == "application/vnd.google-apps.folder"}
+    clips = {c["name"]: c for c in px.drive_list(tok, sub["clips"])}
+    name = job["clip"]
+    if name not in clips:
+        hits = [k for k in clips if name.lower() in k.lower()]
+        if not hits:
+            sys.exit(f"Clip nicht gefunden: {name}")
+        name = hits[0]
+    src = "src" + (pathlib.Path(name).suffix.lower() or ".mp4")
+    px.drive_download(tok, clips[name]["id"], src)
+    info = probe(src)
+    out = src
+    if info["width"] > info["height"]:
+        out = "short.mp4"
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-vf",
+                        "crop=ih*9/16:ih,scale=1080:1920,setsar=1", "-c:v", "libx264", "-preset", "medium",
+                        "-crf", "18", "-c:a", "copy", "-movflags", "+faststart", out], check=True)
+        px.log(f"Querformat {info['width']}x{info['height']} -> 9:16 zugeschnitten (Ton unveraendert)")
+    else:
+        px.log(f"Hochformat {info['width']}x{info['height']}: Originaldatei unveraendert")
+    tok = px.token()
+    v = px.upload(tok, out, job["title"], job.get("description", ""), job.get("tags", []),
+                  os.environ.get("PRIVACY", job.get("privacy", "private")),
+                  synthetic=job.get("synthetic", False), category=job.get("category", "19"),
+                  publish_at=job.get("publish_at"))
+    url = f"https://youtu.be/{v['id']}"
+    st = v["status"]
+    px.log(f"Hochgeladen: {url} (Status: {st['privacyStatus']}, geplant: {st.get('publishAt', '-')}, "
+           f"KI: {st.get('containsSyntheticMedia')})")
+    for pl in job.get("playlists", []):
+        px.add_to_playlist(tok, v["id"], pl)
+    return {"ok": True, "mode": "passthrough", "url": url, "title": job["title"],
+            "privacy": st["privacyStatus"], "publishAt": st.get("publishAt")}
+
+
 def main():
     job = json.loads(pathlib.Path(os.environ.get("RUN_FILE", "../youtube/run.json")).read_text())
     mode = job.get("mode")
@@ -427,6 +467,8 @@ def main():
         res = stats()
     elif mode == "musik":
         res = musik(job)
+    elif mode == "passthrough":
+        res = passthrough(job)
     else:
         res = montage(job)
     res["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")

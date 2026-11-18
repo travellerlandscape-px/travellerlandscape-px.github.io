@@ -262,12 +262,15 @@ def parse_iso6709(g):
     return (float(m.group(1)), float(m.group(2))) if m else None
 
 
-def upload(tok, path, title, desc, tags, privacy, location=None, recorded=None, place=None):
+def upload(tok, path, title, desc, tags, privacy, location=None, recorded=None, place=None,
+           synthetic=False, category="19", publish_at=None):
     """location: (lat, lng) oder None; recorded: ISO-Datum der Aufnahme."""
     base = {"snippet": {"title": title[:100], "description": desc[:4900], "tags": tags,
-                        "categoryId": "19", "defaultLanguage": "en"},
+                        "categoryId": category, "defaultLanguage": "en"},
             "status": {"privacyStatus": privacy, "selfDeclaredMadeForKids": False,
-                       "containsSyntheticMedia": False}}
+                       "containsSyntheticMedia": bool(synthetic)}}
+    if publish_at:  # geplante Veroeffentlichung: Video bleibt bis dahin privat
+        base["status"].update({"privacyStatus": "private", "publishAt": publish_at})
     rec = {}
     if location:
         rec["location"] = {"latitude": location[0], "longitude": location[1], "altitude": 0}
@@ -289,9 +292,8 @@ def upload(tok, path, title, desc, tags, privacy, location=None, recorded=None, 
     if rec:
         attempts.append(({**base, "recordingDetails": rec}, "snippet,status,recordingDetails"))
     attempts.append((base, "snippet,status"))
-    attempts.append(({"snippet": {"title": title[:100], "description": desc[:4900], "categoryId": "19"},
-                      "status": {"privacyStatus": privacy, "selfDeclaredMadeForKids": False}},
-                     "snippet,status"))
+    attempts.append(({"snippet": {"title": title[:100], "description": desc[:4900], "categoryId": category},
+                      "status": {**base["status"]}}, "snippet,status"))
     for b, parts in attempts:
         r = start(b, parts)
         if r.status_code != 400:
