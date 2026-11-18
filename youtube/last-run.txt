@@ -1,19 +1,4 @@
-Drive: /musik (application/vnd.google-apps.folder, 0.0 MB)
-Drive: /musik/Dripped Out - Blue Deer Studio.mp3 (audio/mpeg, 5.9 MB)
-Drive: /musik/Cutscene Crush - Blue Deer Studio.mp3 (audio/mpeg, 4.3 MB)
-Drive: /musik/End Of Time (feat. Tatum Gale) - half.cool.mp3 (audio/mpeg, 9.7 MB)
-Drive: /musik/Fly Away - The Soundlings.mp3 (audio/mpeg, 7.6 MB)
-Drive: /fotos (application/vnd.google-apps.folder, 0.0 MB)
-Drive: /clips (application/vnd.google-apps.folder, 0.0 MB)
-Drive: /clips/0621(2).mov (video/quicktime, 28.1 MB)
-Drive: /clips/INSANE Lava Flow from 2023 Iceland Volcano â Litli-HrÃºtur Eruption (video/mp4, 15.3 MB)
-Drive: /clips/mountainwaterfall.MOV (video/quicktime, 108.2 MB)
-Drive: /clips/waterfalliceland.MOV (video/quicktime, 79.7 MB)
-Drive: /clips/waterfall-iceland.MOV (video/quicktime, 73.2 MB)
-Drive: /clips/mountains_iceland.MOV (video/quicktime, 49.5 MB)
-Drive: /clips/church_iceland.MOV (video/quicktime, 22.0 MB)
-Drive: /clips/waterfall_iceland.MOV (video/quicktime, 58.3 MB)
-Drive: /clips/0622.mov (video/quicktime, 147.6 MB)
-Clip: 0621(2).mov 15.97 s 2560x1440 GPS=
-Clip: 0622.mov 47.9 s 1440x2560 GPS=
-{"ok": true, "mode": "sichtung", "clips": 9, "music": 4, "time": "2026-11-18T17:29:51+00:00"}
+Hochformat 1440x2560: Originaldatei unveraendert
+Hochgeladen: https://youtu.be/qy07jPZ5jWE (Status: public, geplant: -, KI: True)
+Playlist 'AI Videos': ok
+{"ok": true, "mode": "passthrough", "url": "https://youtu.be/qy07jPZ5jWE", "title": "AI turned me into a lightning wizard ⚡ #AIvideo #shorts", "privacy": "public", "publishAt": null, "time": "2026-11-18T17:32:45+00:00"}
