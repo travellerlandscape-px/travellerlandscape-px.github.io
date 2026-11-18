@@ -210,6 +210,11 @@ def montage(job):
     if job.get("music") and job["music"] in songs:
         music = "music" + pathlib.Path(job["music"]).suffix.lower()
         px.drive_download(tok, songs[job["music"]]["id"], music)
+    elif job.get("music") and (MUSIK / job["music"]).exists():
+        music = str(MUSIK / job["music"])
+        lic = json.loads((MUSIK / "lizenzen.json").read_text()).get(job["music"], {})
+        if lic.get("attribution") and lic["attribution"] not in job.get("description", ""):
+            job["description"] = job.get("description", "") + "\n\n🎵 Music:\n" + lic["attribution"]
     xd = float(job.get("transition", 0.3))
     cmd = ["ffmpeg", "-y", "-loglevel", "error"]
     for seg in plan:
@@ -343,6 +348,69 @@ def stats():
     return {"ok": True, "mode": "stats", "channel": out["channel"]}
 
 
+MUSIK = pathlib.Path(os.environ.get("MUSIK_DIR", "../youtube/musik"))
+ATTRIB = ('"{title}" Kevin MacLeod (incompetech.com)\n'
+          "Licensed under Creative Commons: By Attribution 4.0 License\n"
+          "http://creativecommons.org/licenses/by/4.0/")
+
+
+def musik(job):
+    """Laedt passende CC-BY-Titel von incompetech.com ins Repo (youtube/musik) und misst das Tempo."""
+    import requests
+    base = "https://incompetech.com/music/royalty-free/"
+    MUSIK.mkdir(parents=True, exist_ok=True)
+    r = requests.get(base + "pieces.json", timeout=60, headers={"User-Agent": "px-media/1.0"})
+    r.raise_for_status()
+    pieces = r.json()
+    if isinstance(pieces, dict):
+        pieces = next((v for v in pieces.values() if isinstance(v, list)), [])
+    keys = sorted({k for p in pieces[:50] for k in p})
+    px.log(f"Katalog: {len(pieces)} Titel, Felder: {keys}")
+    want = [w.lower() for w in job.get("want", ["epic", "cinematic", "action", "intense", "driving",
+                                                  "dramatic", "bright", "uplifting", "suspense"])]
+    def txt(p):
+        return " ".join(str(p.get(k, "")) for k in p if any(x in k.lower() for x in
+                        ("genre", "feel", "instrument", "description", "title"))).lower()
+    def fname(p):
+        return next((p[k] for k in p if "file" in k.lower() and str(p[k]).lower().endswith(".mp3")), None)
+    scored = []
+    for p in pieces:
+        f = fname(p)
+        if not f:
+            continue
+        t = txt(p)
+        score = sum(t.count(w) for w in want)
+        if score:
+            scored.append((score, p, f))
+    scored.sort(key=lambda x: -x[0])
+    titles = [t.lower() for t in job.get("titles", [])]
+    if titles:  # gezielte Auswahl nach Titel
+        scored = [x for x in scored if any(t in str(x[1].get("title", x[2])).lower() for t in titles)] or scored
+    lic = json.loads((MUSIK / "lizenzen.json").read_text()) if (MUSIK / "lizenzen.json").exists() else {}
+    got = 0
+    for score, p, f in scored:
+        if got >= int(job.get("count", 15)):
+            break
+        if f in lic:
+            continue
+        rr = requests.get(base + "mp3-royaltyfree/" + requests.utils.quote(f), timeout=120,
+                          headers={"User-Agent": "px-media/1.0"})
+        if rr.status_code != 200 or len(rr.content) < 100000:
+            px.log(f"Uebersprungen: {f} ({rr.status_code})")
+            continue
+        (MUSIK / f).write_bytes(rr.content)
+        title = p.get("title") or pathlib.Path(f).stem
+        info = {"title": title, "file": f, "seconds": round(px.probe_duration(str(MUSIK / f)), 1),
+                "bpm": tempo(str(MUSIK / f)), "score": score,
+                "tags": {k: p[k] for k in p if any(x in k.lower() for x in ("genre", "feel"))},
+                "attribution": ATTRIB.format(title=title)}
+        lic[f] = info
+        got += 1
+        px.log(f"Musik geladen: {title} ({info['seconds']:.0f} s, ca. {info['bpm']} BPM) {info['tags']}")
+    (MUSIK / "lizenzen.json").write_text(json.dumps(lic, indent=1, ensure_ascii=False))
+    return {"ok": True, "mode": "musik", "neu": got, "gesamt": len(lic)}
+
+
 def main():
     job = json.loads(pathlib.Path(os.environ.get("RUN_FILE", "../youtube/run.json")).read_text())
     mode = job.get("mode")
@@ -350,6 +418,8 @@ def main():
         res = sichtung()
     elif mode == "stats":
         res = stats()
+    elif mode == "musik":
+        res = musik(job)
     else:
         res = montage(job)
     res["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
