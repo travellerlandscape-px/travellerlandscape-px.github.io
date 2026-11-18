@@ -40,3 +40,14 @@ Je Short 5 Varianten erwägen, die stärkste nehmen; Muster im Auftrag notieren,
 - Kategorie: Reisen & Events (19), Sprache Englisch, nicht für Kinder, keine KI-Inhalte.
 - Playlists: `playlists` im Auftrag, z. B. ["Iceland"]; fehlende Playlists werden öffentlich angelegt.
 - Musik nur aus dem Drive-Ordner `musik` (YouTube Audio Library), Quelle in der Beschreibung nennen.
+
+## Hashtags (Stand 18.11.2026)
+- Gesamt 5–8 Hashtags, nie mehr als 15 (manche Quellen: bei Überschreitung ignoriert YouTube alle; offizielle Grenze laut YouTube-Hilfe 60 – unsicher, deshalb konservativ).
+- Titel: 1–2 Hashtags am Ende, z. B. `#Iceland #shorts` (`title_hashtags` im Auftrag).
+- Beschreibung: die 3 wichtigsten zuerst (erscheinen über dem Titel), z. B. `#iceland #volcano #lava`, danach Region/Motiv; `#shorts` zuletzt.
+- Nur passende Hashtags; fremde Trend-Hashtags sind ein Richtlinienverstoß.
+
+## Felder, die die Schnittstelle nicht (sichtbar) setzt
+- **Standort** in der App: Koordinaten werden angenommen, aber nicht als Ort angezeigt. Versuch mit `place` (Ortsname). Sonst Ort in Beschreibung und Hashtags, App-Feld bei Bedarf von Hand.
+- **Ähnliches Video**: nur in der App möglich.
+- **Playlist**: per Schnittstelle, mit Wiederholung; bei Fehler in der App ergänzen.

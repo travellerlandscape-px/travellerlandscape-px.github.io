@@ -266,8 +266,13 @@ def montage(job):
     if isinstance(loc, dict):
         loc = (loc["lat"], loc["lng"])
     tok = px.token()
-    v = px.upload(tok, "short.mp4", job["title"][:100], job.get("description", ""),
-                  job.get("tags", []), os.environ.get("PRIVACY", "private"), loc, rec)
+    title = job["title"]
+    # Titel: 1-2 Hashtags am Ende (Land + #shorts), Beschreibung: 3-6 passende, wichtigste zuerst
+    for h in job.get("title_hashtags", []):
+        if h.lower() not in title.lower() and len(title) + len(h) + 1 <= 100:
+            title = title.replace(" #shorts", "") + f" {h}" + (" #shorts" if "#shorts" in title else "")
+    v = px.upload(tok, "short.mp4", title[:100], job.get("description", ""),
+                  job.get("tags", []), os.environ.get("PRIVACY", "private"), loc, rec, job.get("place"))
     url = f"https://youtu.be/{v['id']}"
     px.log(f"Hochgeladen: {url} (Status: {v['status']['privacyStatus']}, Ort: {loc})")
     for pl in job.get("playlists", []):

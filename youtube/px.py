@@ -262,7 +262,7 @@ def parse_iso6709(g):
     return (float(m.group(1)), float(m.group(2))) if m else None
 
 
-def upload(tok, path, title, desc, tags, privacy, location=None, recorded=None):
+def upload(tok, path, title, desc, tags, privacy, location=None, recorded=None, place=None):
     """location: (lat, lng) oder None; recorded: ISO-Datum der Aufnahme."""
     base = {"snippet": {"title": title[:100], "description": desc[:4900], "tags": tags,
                         "categoryId": "19", "defaultLanguage": "en"},
@@ -273,6 +273,8 @@ def upload(tok, path, title, desc, tags, privacy, location=None, recorded=None):
         rec["location"] = {"latitude": location[0], "longitude": location[1], "altitude": 0}
     if recorded:
         rec["recordingDate"] = recorded[:10] + "T00:00:00Z"
+    if place:
+        rec["locationDescription"] = place
     size = os.path.getsize(path)
 
     def start(b, parts):
