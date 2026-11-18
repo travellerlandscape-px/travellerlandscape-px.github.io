@@ -1,5 +1,11 @@
 # P-X Travel – Shorts-Playbook
 
+## Grundregel (ab 18.11.2026, Entscheidung des Kanalinhabers)
+- **Ein Video pro Tag**, nicht mehr.
+- **Der Kanalinhaber schneidet selbst** (z. B. CapCut) und legt den fertigen Short in Drive unter `PX-Youtube/fertig` (oder `clips`) ab.
+- Er sagt, welches Video hochgeladen wird. Claude lädt **1:1** hoch (Modus `passthrough`), schneidet nichts.
+- Claude liefert: Titel, Beschreibung, Hashtags, Tags, Ort, Playlist, KI-Kennzeichnung, Planung, Statistik.
+
 Regeln, nach denen Claude Shorts für den Kanal plant, schneidet und betextet.
 Quellen: Hook-Regeln aus `blacktwist/social-media-skills` (hook-writer-sms, MIT) plus eigene Auswertung.
 

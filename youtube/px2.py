@@ -424,7 +424,11 @@ def passthrough(job):
     tok = px.token()
     sub = {f["name"].lower(): f["id"] for f in px.drive_list(tok, os.environ["DRIVE_FOLDER_ID"])
            if f["mimeType"] == "application/vnd.google-apps.folder"}
-    clips = {c["name"]: c for c in px.drive_list(tok, sub["clips"])}
+    clips = {}
+    for folder in ("fertig", "clips"):  # fertige Shorts zuerst, dann Rohclips
+        if folder in sub:
+            for c in px.drive_list(tok, sub[folder]):
+                clips.setdefault(c["name"], c)
     name = job["clip"]
     if name not in clips:
         hits = [k for k in clips if name.lower() in k.lower()]
