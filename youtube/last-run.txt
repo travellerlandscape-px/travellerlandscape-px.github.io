@@ -1,0 +1,7 @@
+Clips: 6 gesamt, 6 offen. Musiktitel: 4.
+Clip: church_iceland.MOV -> Titel: This tiny Icelandic church hides a Viking story 🇮🇸 #shorts (Story-Modus)
+Musik: End Of Time (feat. Tatum Gale) - half.cool.mp3
+Gerendert: 16.4 s, 17.9 MB
+Hochgeladen: https://youtu.be/QHEzHWpzvwQ (Status: private)
+/home/runner/work/travellerlandscape-px.github.io/travellerlandscape-px.github.io/work/../youtube/px.py:358: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "story": bool(story), "time": datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z"},
