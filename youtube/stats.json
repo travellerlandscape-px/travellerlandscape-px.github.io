@@ -1,20 +1,20 @@
 {
- "time": "2026-11-18T01:46:09+00:00",
+ "time": "2026-11-18T02:29:14+00:00",
  "channel": {
   "title": "P-X Travel",
   "subscribers": 2,
   "views": 464,
-  "videos": 7
+  "videos": 8
  },
  "videos": [
   {
    "id": "46lfwAowMNk",
    "title": "Iceland volcano: boiling lava up close 🔥 #shorts",
-   "published": "2026-11-18T01:44:05Z",
+   "published": "2026-11-18T01:47:24Z",
    "duration": "PT29S",
-   "privacy": "private",
-   "views": 0,
-   "likes": 0,
+   "privacy": "public",
+   "views": 40,
+   "likes": 1,
    "comments": 0
   },
   {
@@ -23,8 +23,8 @@
    "published": "2026-11-18T01:21:35Z",
    "duration": "PT30S",
    "privacy": "public",
-   "views": 52,
-   "likes": 0,
+   "views": 106,
+   "likes": 3,
    "comments": 0
   },
   {
@@ -33,8 +33,8 @@
    "published": "2026-11-18T00:43:06Z",
    "duration": "PT17S",
    "privacy": "public",
-   "views": 236,
-   "likes": 4,
+   "views": 361,
+   "likes": 8,
    "comments": 0
   },
   {
