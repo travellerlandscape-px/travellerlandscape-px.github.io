@@ -477,6 +477,49 @@ def update(job):
     return {"ok": True, "mode": "update", "video": job["video"], "title": body["snippet"]["title"]}
 
 
+def diagnose(job):
+    """Status, Einschraenkungen und Herkunft der Aufrufe der letzten Videos."""
+    import requests
+    tok = px.token()
+    ch = yt_get(tok, "channels", {"part": "contentDetails,status,statistics", "mine": "true"})["items"][0]
+    px.log(f"Kanal-Status: {json.dumps(ch.get('status', {}))}")
+    uploads = ch["contentDetails"]["relatedPlaylists"]["uploads"]
+    ids = [it["contentDetails"]["videoId"] for it in
+           yt_get(tok, "playlistItems", {"part": "contentDetails", "playlistId": uploads, "maxResults": 10})["items"]]
+    j = yt_get(tok, "videos", {"part": "snippet,status,statistics,contentDetails,processingDetails",
+                               "id": ",".join(ids)})
+    rep = {"channel_status": ch.get("status", {}), "videos": []}
+    for v in j.get("items", []):
+        st, cd = v["status"], v["contentDetails"]
+        item = {"id": v["id"], "title": v["snippet"]["title"][:60], "published": v["snippet"].get("publishedAt"),
+                "views": v["statistics"].get("viewCount"), "status": st,
+                "region": cd.get("regionRestriction"), "licensedContent": cd.get("licensedContent"),
+                "contentRating": cd.get("contentRating"),
+                "processing": v.get("processingDetails", {}).get("processingStatus")}
+        rep["videos"].append(item)
+        px.log(f"{item['published'][:16]} {item['views']:>5} | {item['title']} | upload={st.get('uploadStatus')} "
+               f"privacy={st.get('privacyStatus')} kids={st.get('madeForKids')} KI={st.get('containsSyntheticMedia')} "
+               f"embed={st.get('embeddable')} region={item['region']} rating={item['contentRating']} "
+               f"rejection={st.get('rejectionReason')} failure={st.get('failureReason')}")
+    # Herkunft der Aufrufe und Tagesverlauf (Analytics, mit Verzoegerung)
+    end = datetime.date.today().isoformat()
+    start = (datetime.date.today() - datetime.timedelta(days=3)).isoformat()
+    for vid in ids[:6]:
+        for dims in ("insightTrafficSourceType", "day"):
+            try:
+                r = requests.get("https://youtubeanalytics.googleapis.com/v2/reports", params={
+                    "ids": "channel==MINE", "startDate": start, "endDate": end, "metrics": "views,averageViewPercentage",
+                    "dimensions": dims, "filters": f"video=={vid}"},
+                    headers={"Authorization": f"Bearer {tok}"}, timeout=60)
+                rows = r.json().get("rows", []) if r.status_code == 200 else f"HTTP {r.status_code}"
+            except Exception as e:
+                rows = str(e)
+            px.log(f"Analytics {vid} {dims}: {rows}")
+            rep.setdefault("analytics", {}).setdefault(vid, {})[dims] = rows
+    (OUT.parent / "diagnose.json").write_text(json.dumps(rep, indent=1, ensure_ascii=False))
+    return {"ok": True, "mode": "diagnose"}
+
+
 def main():
     job = json.loads(pathlib.Path(os.environ.get("RUN_FILE", "../youtube/run.json")).read_text())
     mode = job.get("mode")
@@ -490,6 +533,8 @@ def main():
         res = passthrough(job)
     elif mode == "update":
         res = update(job)
+    elif mode == "diagnose":
+        res = diagnose(job)
     else:
         res = montage(job)
     res["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
