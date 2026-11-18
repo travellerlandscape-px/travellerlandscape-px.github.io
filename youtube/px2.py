@@ -243,11 +243,28 @@ def montage(job):
     cmd += ["-c:v", "libx264", "-preset", "medium", "-crf", "19", "-movflags", "+faststart", "short.mp4"]
     subprocess.run(cmd, check=True)
     px.log(f"Montage gerendert: {total:.1f} s, {os.path.getsize('short.mp4') / 1e6:.1f} MB")
+    # Ort und Aufnahmedatum: aus dem Auftrag oder automatisch aus den GPS-Daten der Clips
+    loc, rec = job.get("location"), job.get("recorded")
+    try:
+        idx = json.loads((OUT / "index.json").read_text())
+        meta = {c["name"]: c for c in idx.get("clips", [])}
+        for seg in plan:
+            m = meta.get(seg["clip"], {})
+            if not loc and m.get("gps"):
+                loc = px.parse_iso6709(m["gps"])
+            if not rec and m.get("created"):
+                rec = m["created"]
+    except Exception:
+        pass
+    if isinstance(loc, dict):
+        loc = (loc["lat"], loc["lng"])
     tok = px.token()
     v = px.upload(tok, "short.mp4", job["title"][:100], job.get("description", ""),
-                  job.get("tags", []), os.environ.get("PRIVACY", "private"))
+                  job.get("tags", []), os.environ.get("PRIVACY", "private"), loc, rec)
     url = f"https://youtu.be/{v['id']}"
-    px.log(f"Hochgeladen: {url} (Status: {v['status']['privacyStatus']})")
+    px.log(f"Hochgeladen: {url} (Status: {v['status']['privacyStatus']}, Ort: {loc})")
+    for pl in job.get("playlists", []):
+        px.add_to_playlist(tok, v["id"], pl)
     return {"ok": True, "mode": "montage", "url": url, "title": job["title"],
             "seconds": round(total, 1), "privacy": v["status"]["privacyStatus"]}
 

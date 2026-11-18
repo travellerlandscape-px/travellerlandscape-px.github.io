@@ -34,3 +34,9 @@ Je Short 5 Varianten erwägen, die stärkste nehmen; Muster im Auftrag notieren,
 - Pro Short notieren: Hook-Muster, Länge, Musik. Nach 48 h: Aufrufe, Ø Wiedergabedauer, Wischquote.
 - Immer nur eine Sache ändern (z. B. nur den Hook), Muster erst nach 5–10 Shorts bewerten.
 - Messwerte: Ø Wiedergabedauer und "angesehen vs. weggewischt" vor reinen Aufrufen.
+
+## Metadaten beim Upload (automatisch)
+- Ort: aus den GPS-Daten des ersten Clips mit GPS (oder `location` im Auftrag), Aufnahmedatum aus den Clip-Daten.
+- Kategorie: Reisen & Events (19), Sprache Englisch, nicht für Kinder, keine KI-Inhalte.
+- Playlists: `playlists` im Auftrag, z. B. ["Iceland"]; fehlende Playlists werden öffentlich angelegt.
+- Musik nur aus dem Drive-Ordner `musik` (YouTube Audio Library), Quelle in der Beschreibung nennen.

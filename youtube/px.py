@@ -256,26 +256,45 @@ def find_story(stories, filename):
     return None
 
 
-def upload(tok, path, title, desc, tags, privacy):
-    body = {"snippet": {"title": title, "description": desc, "tags": tags, "categoryId": "19",
-                        "defaultLanguage": "en"},
+def parse_iso6709(g):
+    """'+64.7514-023.6512+052.022/' -> (64.7514, -23.6512)"""
+    m = re.match(r"([+-]\d+(?:\.\d+)?)([+-]\d+(?:\.\d+)?)", g or "")
+    return (float(m.group(1)), float(m.group(2))) if m else None
+
+
+def upload(tok, path, title, desc, tags, privacy, location=None, recorded=None):
+    """location: (lat, lng) oder None; recorded: ISO-Datum der Aufnahme."""
+    base = {"snippet": {"title": title[:100], "description": desc[:4900], "tags": tags,
+                        "categoryId": "19", "defaultLanguage": "en"},
             "status": {"privacyStatus": privacy, "selfDeclaredMadeForKids": False,
                        "containsSyntheticMedia": False}}
+    rec = {}
+    if location:
+        rec["location"] = {"latitude": location[0], "longitude": location[1], "altitude": 0}
+    if recorded:
+        rec["recordingDate"] = recorded[:10] + "T00:00:00Z"
     size = os.path.getsize(path)
 
-    def start(b):
+    def start(b, parts):
         return requests.post(f"{API}/upload/youtube/v3/videos",
-                      params={"uploadType": "resumable", "part": "snippet,status"},
-                      headers={"Authorization": f"Bearer {tok}",
-                               "Content-Type": "application/json; charset=UTF-8",
-                               "X-Upload-Content-Type": "video/mp4",
-                               "X-Upload-Content-Length": str(size)},
-                      data=json.dumps(b), timeout=60)
-    r = start(body)
-    if r.status_code == 400:  # Fallback: nur Pflichtfelder
-        log(f"Hinweis: Metadaten abgelehnt ({r.text[:200]}), versuche es mit Minimal-Angaben.")
-        r = start({"snippet": {"title": title[:100], "description": desc[:4900], "categoryId": "19"},
-                   "status": {"privacyStatus": privacy, "selfDeclaredMadeForKids": False}})
+                             params={"uploadType": "resumable", "part": parts},
+                             headers={"Authorization": f"Bearer {tok}",
+                                      "Content-Type": "application/json; charset=UTF-8",
+                                      "X-Upload-Content-Type": "video/mp4",
+                                      "X-Upload-Content-Length": str(size)},
+                             data=json.dumps(b), timeout=60)
+    attempts = []
+    if rec:
+        attempts.append(({**base, "recordingDetails": rec}, "snippet,status,recordingDetails"))
+    attempts.append((base, "snippet,status"))
+    attempts.append(({"snippet": {"title": title[:100], "description": desc[:4900], "categoryId": "19"},
+                      "status": {"privacyStatus": privacy, "selfDeclaredMadeForKids": False}},
+                     "snippet,status"))
+    for b, parts in attempts:
+        r = start(b, parts)
+        if r.status_code != 400:
+            break
+        log(f"Hinweis: Angaben abgelehnt ({r.text[:200]}), naechster Versuch mit weniger Angaben.")
     if r.status_code != 200:
         sys.exit(f"Upload-Start fehlgeschlagen ({r.status_code}): {r.text[:500]}")
     with open(path, "rb") as f:
@@ -285,6 +304,35 @@ def upload(tok, path, title, desc, tags, privacy):
     if r2.status_code not in (200, 201):
         sys.exit(f"Upload fehlgeschlagen ({r2.status_code}): {r2.text[:500]}")
     return r2.json()
+
+
+def add_to_playlist(tok, video_id, name):
+    """Video in die Playlist 'name' legen; Playlist bei Bedarf oeffentlich anlegen."""
+    h = {"Authorization": f"Bearer {tok}"}
+    pid, page = None, None
+    while not pid:
+        p = {"part": "snippet", "mine": "true", "maxResults": 50}
+        if page:
+            p["pageToken"] = page
+        j = requests.get(f"{API}/youtube/v3/playlists", params=p, headers=h, timeout=60).json()
+        pid = next((it["id"] for it in j.get("items", []) if it["snippet"]["title"] == name), None)
+        page = j.get("nextPageToken")
+        if not page:
+            break
+    if not pid:
+        r = requests.post(f"{API}/youtube/v3/playlists", params={"part": "snippet,status"}, headers=h,
+                          json={"snippet": {"title": name}, "status": {"privacyStatus": "public"}},
+                          timeout=60)
+        if r.status_code != 200:
+            log(f"Hinweis: Playlist nicht angelegt ({r.status_code})")
+            return None
+        pid = r.json()["id"]
+    r = requests.post(f"{API}/youtube/v3/playlistItems", params={"part": "snippet"}, headers=h,
+                      json={"snippet": {"playlistId": pid,
+                                        "resourceId": {"kind": "youtube#video", "videoId": video_id}}},
+                      timeout=60)
+    log(f"Playlist '{name}': {'ok' if r.status_code == 200 else r.status_code}")
+    return pid
 
 
 def main():
