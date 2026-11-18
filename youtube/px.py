@@ -190,15 +190,23 @@ def render_story(clip, music, cards, out, card_s=3.6):
         z0, z1 = (1.0, 1.12) if i % 2 == 0 else (1.18, 1.04)
         z = f"({z0}+({z1}-{z0})*t/{card_s:.2f})"
         clean = re.sub(r"[^\u0000-\uFFFF]|[\u2600-\u27BF\uFE0F]", "", text).strip()
-        pathlib.Path(f"card{i}.txt").write_text(wrap(clean), encoding="utf-8")
+        lines = wrap(clean).split("\n")
+        alpha = f"min(1,t/0.35)*min(1,({card_s:.2f}-t)/0.35)"
+        lh, y0 = 86, 300  # Zeilenhoehe, oberer Rand
+        texts = []
+        for j, line in enumerate(lines):  # jede Zeile einzeln: keine Zeilenumbruch-Zeichen
+            pathlib.Path(f"card{i}_{j}.txt").write_text(line, encoding="utf-8")
+            texts.append(f"drawtext=fontfile={font}:textfile=card{i}_{j}.txt:fontcolor=white:"
+                         f"fontsize=60:x=(w-text_w)/2:y={y0 + j * lh}:alpha='{alpha}':"
+                         "shadowcolor=black@0.6:shadowx=2:shadowy=2")
+        box = (f"drawbox=x=60:y={y0 - 30}:w=960:h={len(lines) * lh + 40}:color=black@0.35:t=fill:"
+               f"enable='between(t,0.15,{card_s - 0.15:.2f})'")
         f = (f"[0:v]trim={a:.3f}:{b:.3f},setpts=(PTS-STARTPTS)/{speed:.4f},"
              "scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,"
              f"scale=w='1080*{z}':h='1920*{z}':eval=frame,crop=1080:1920,"
              "fps=30,eq=contrast=1.08:saturation=1.22:brightness=0.01,vignette=PI/5,"
-             f"trim=0:{card_s:.2f},setpts=PTS-STARTPTS,"
-             f"drawtext=fontfile={font}:textfile=card{i}.txt:fontcolor=white:fontsize=60:"
-             "line_spacing=14:text_align=C:x=(w-text_w)/2:y=h*0.16:box=1:boxcolor=black@0.35:boxborderw=28:"
-             f"alpha='min(1,t/0.35)*min(1,({card_s:.2f}-t)/0.35)',format=yuv420p[v{i}]")
+             f"trim=0:{card_s:.2f},setpts=PTS-STARTPTS,{box},"
+             + ",".join(texts) + f",format=yuv420p[v{i}]")
         parts.append(f)
     xf, last = [], "v0"
     for i in range(1, n):  # weiche Uebergaenge
