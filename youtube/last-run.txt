@@ -1,9 +1,17 @@
-2026-11-18      0 Aufrufe   0 Likes -% | Iceland volcano: boiling lava up close 🔥 #shorts (private)
-2026-11-18     52 Aufrufe   0 Likes -% | Iceland doesn't look real 🇮🇸 Snæfellsnes in 30 seconds #shor (public)
-2026-11-18    236 Aufrufe   4 Likes -% | This tiny Icelandic church hides a Viking story 🇮🇸 #shorts (public)
-2023-08-26      8 Aufrufe   0 Likes 21.2% | Iceland Sea Rocks (public)
-2023-08-26     40 Aufrufe   2 Likes 76.0% | snaefellsnes National Park (public)
-2023-08-26    280 Aufrufe   3 Likes 73.5% | Iceland Sword Bridge (public)
-2023-08-09    113 Aufrufe   2 Likes 19.6% | INSANE Lava Flow from 2023 Iceland Volcano – Litli-Hrútur Er (public)
-2023-05-23     23 Aufrufe   1 Likes 27.7% | Seoul - Songdo Central Park (public)
-{"ok": true, "mode": "stats", "channel": {"title": "P-X Travel", "subscribers": 2, "views": 464, "videos": 7}, "time": "2026-11-18T01:46:09+00:00"}
+Katalog: 1443 Titel, Felder: ['bpm', 'collection', 'description', 'feel', 'filename', 'filmmusicURL', 'genre', 'instruments', 'isrc', 'itunes', 'length', 'sheetmusic', 'title', 'uploaded', 'video']
+Musik geladen: Clenched Teeth (91 s, ca. 83.4 BPM) {'genre': '22', 'feel': 'Action, Driving, Epic, Intense'}
+Musik geladen: Take a Chance (37 s, ca. 123.0 BPM) {'genre': '22', 'feel': 'Action, Driving, Epic, Intense, Uplifting'}
+Musik geladen: Prelude and Action (99 s, ca. 172.3 BPM) {'genre': '22', 'feel': 'Action, Driving, Intense, Suspenseful'}
+Musik geladen: Nerves (172 s, ca. 92.3 BPM) {'genre': '22', 'feel': 'Action, Dark, Eerie, Epic, Intense, Suspenseful'}
+Musik geladen: Exciting Trailer (75 s, ca. 184.6 BPM) {'genre': '22', 'feel': 'Action, Aggressive, Dark, Driving, Epic, Intense'}
+Musik geladen: Undaunted (212 s, ca. 172.3 BPM) {'genre': '22', 'feel': 'Driving, Epic, Action, Intense'}
+Musik geladen: Unity (264 s, ca. 143.6 BPM) {'genre': '22', 'feel': 'Action, Driving, Intense'}
+Musik geladen: Black Vortex (170 s, ca. 161.5 BPM) {'genre': '22', 'feel': 'Action, Aggressive, Dark, Driving, Epic, Intense, Suspenseful'}
+Musik geladen: The Descent (192 s, ca. 103.4 BPM) {'genre': '22', 'feel': 'Action, Dark, Driving, Epic, Intense'}
+Musik geladen: Egmont Overture Finale (104 s, ca. 76.0 BPM) {'genre': '4', 'feel': 'Driving, Epic, Intense, Uplifting'}
+Musik geladen: Mistake the Getaway (123 s, ca. 143.6 BPM) {'genre': '22', 'feel': 'Action, Driving, Epic, Intense, Suspenseful'}
+Musik geladen: Devastation and Revenge (185 s, ca. 107.7 BPM) {'genre': '5', 'feel': 'Eerie, Epic, Intense, Mystical, Somber, Suspenseful'}
+Musik geladen: At Launch (185 s, ca. 112.3 BPM) {'genre': '22', 'feel': 'Epic, Intense, Suspenseful, Uplifting'}
+Musik geladen: Achilles (61 s, ca. 112.3 BPM) {'genre': '22', 'feel': 'Action, Dark, Driving, Epic, Intense'}
+Musik geladen: Chase (133 s, ca. 73.8 BPM) {'genre': '22', 'feel': 'Action, Driving, Eerie, Epic, Intense'}
+{"ok": true, "mode": "musik", "neu": 15, "gesamt": 15, "time": "2026-11-18T02:05:38+00:00"}

@@ -1,11 +1,7 @@
 {
  "ok": true,
- "mode": "stats",
- "channel": {
-  "title": "P-X Travel",
-  "subscribers": 2,
-  "views": 464,
-  "videos": 7
- },
- "time": "2026-11-18T01:46:09+00:00"
+ "mode": "musik",
+ "neu": 15,
+ "gesamt": 15,
+ "time": "2026-11-18T02:05:38+00:00"
 }
