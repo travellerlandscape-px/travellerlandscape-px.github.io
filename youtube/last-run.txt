@@ -1,4 +1,10 @@
-Montage gerendert: 17.5 s, 15.0 MB
-Hochgeladen: https://youtu.be/tQ9ooOfBnxU (Status: private, Ort: (63.918, -22.245))
-Playlist 'Iceland': 409
-{"ok": true, "mode": "montage", "url": "https://youtu.be/tQ9ooOfBnxU", "title": "This lava is over 1,100 °C 🔥 Iceland volcano #shorts", "seconds": 17.5, "privacy": "private", "time": "2026-11-18T14:21:45+00:00"}
+2026-11-18      2 Aufrufe   0 Likes -% | This lava is over 1,100 °C 🔥 Iceland volcano #shorts (public)
+2026-11-18    224 Aufrufe   1 Likes -% | Iceland volcano: boiling lava up close 🔥 #shorts (public)
+2026-11-18    537 Aufrufe   8 Likes -% | Iceland doesn't look real 🇮🇸 Snæfellsnes in 30 seconds #shor (public)
+2026-11-18   1067 Aufrufe  20 Likes -% | This tiny Icelandic church hides a Viking story 🇮🇸 #shorts (public)
+2023-08-26      8 Aufrufe   0 Likes 21.2% | Iceland Sea Rocks (public)
+2023-08-26     40 Aufrufe   2 Likes 76.0% | snaefellsnes National Park (public)
+2023-08-26    280 Aufrufe   3 Likes 73.5% | Iceland Sword Bridge (public)
+2023-08-09    113 Aufrufe   2 Likes 19.6% | INSANE Lava Flow from 2023 Iceland Volcano – Litli-Hrútur Er (public)
+2023-05-23     23 Aufrufe   1 Likes 27.7% | Seoul - Songdo Central Park (public)
+{"ok": true, "mode": "stats", "channel": {"title": "P-X Travel", "subscribers": 5, "views": 464, "videos": 9}, "time": "2026-11-18T15:08:53+00:00"}
