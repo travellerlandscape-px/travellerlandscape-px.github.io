@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>px-media – how it works</title></head>
+<body style="font-family:sans-serif;max-width:760px;margin:40px auto;padding:0 16px;line-height:1.5">
+<h1>px-media – how it works</h1>
+<p>px-media is a private, single-user tool. It is used only by the owner of the YouTube channel
+<a href="https://www.youtube.com/@p-x-travel">P-X Travel (@p-x-travel)</a> to publish his own travel and drone footage.
+It is not offered to any other user.</p>
+
+<h2>Workflow</h2>
+<ol>
+<li>The channel owner uploads his own video clips and royalty-free music (YouTube Audio Library) to a private folder in his own Google Drive.</li>
+<li>A scheduled job (GitHub Actions, owned by the channel owner) reads the next clip from that folder (Drive API, read-only).</li>
+<li>The clip is edited automatically into a vertical Short: cropping to 9:16, colour correction, zoom, text overlays and music.</li>
+<li>The finished video is uploaded to the owner's own channel with <code>videos.insert</code> (YouTube Data API v3), including title, description and tags.</li>
+<li>Once a week, the owner's own channel statistics are read with the YouTube Analytics API to plan the next uploads.</li>
+</ol>
+
+<h2>APIs and scopes</h2>
+<ul>
+<li>YouTube Data API v3 – <code>youtube.upload</code>, <code>youtube</code> (upload and manage the owner's own videos)</li>
+<li>YouTube Analytics API – <code>yt-analytics.readonly</code> (the owner's own channel statistics)</li>
+<li>Google Drive API – <code>drive.readonly</code> (the owner's own source clips)</li>
+</ul>
+<p>Expected volume: 1–3 uploads per day.</p>
+
+<h2>Data handling</h2>
+<p>Only the owner's own data is accessed. No data of other users is collected, stored, sold or shared.
+Credentials are stored as encrypted secrets and can be revoked at any time at
+https://myaccount.google.com/permissions. See the <a href="privacy.html">Privacy Policy</a> and
+<a href="terms.html">Terms of Service</a>.</p>
+
+<p>Contact: travellerlandscape@gmail.com</p>
+</body></html>
