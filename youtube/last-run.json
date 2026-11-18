@@ -1,9 +1,11 @@
 {
  "ok": true,
- "mode": "montage",
- "url": "https://youtu.be/46lfwAowMNk",
- "title": "Iceland volcano: boiling lava up close 🔥 #shorts",
- "seconds": 28.6,
- "privacy": "private",
- "time": "2026-11-18T01:44:07+00:00"
+ "mode": "stats",
+ "channel": {
+  "title": "P-X Travel",
+  "subscribers": 2,
+  "views": 464,
+  "videos": 7
+ },
+ "time": "2026-11-18T01:46:09+00:00"
 }
