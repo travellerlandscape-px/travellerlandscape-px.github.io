@@ -458,6 +458,25 @@ def passthrough(job):
             "privacy": st["privacyStatus"], "publishAt": st.get("publishAt")}
 
 
+def update(job):
+    """Titel/Beschreibung/Tags eines vorhandenen Videos aendern."""
+    import requests
+    tok = px.token()
+    v = yt_get(tok, "videos", {"part": "snippet", "id": job["video"]})["items"][0]
+    sn = v["snippet"]
+    body = {"id": job["video"], "snippet": {
+        "title": job.get("title", sn["title"])[:100],
+        "description": job.get("description", sn.get("description", ""))[:4900],
+        "tags": job.get("tags", sn.get("tags", [])),
+        "categoryId": job.get("category", sn.get("categoryId", "19"))}}
+    r = requests.put("https://www.googleapis.com/youtube/v3/videos", params={"part": "snippet"},
+                     headers={"Authorization": f"Bearer {tok}"}, json=body, timeout=60)
+    if r.status_code != 200:
+        sys.exit(f"Aenderung fehlgeschlagen ({r.status_code}): {r.text[:300]}")
+    px.log(f"Geaendert: {job['video']} -> {body['snippet']['title']}")
+    return {"ok": True, "mode": "update", "video": job["video"], "title": body["snippet"]["title"]}
+
+
 def main():
     job = json.loads(pathlib.Path(os.environ.get("RUN_FILE", "../youtube/run.json")).read_text())
     mode = job.get("mode")
@@ -469,6 +488,8 @@ def main():
         res = musik(job)
     elif mode == "passthrough":
         res = passthrough(job)
+    elif mode == "update":
+        res = update(job)
     else:
         res = montage(job)
     res["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
