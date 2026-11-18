@@ -161,8 +161,11 @@ def segment_filter(i, seg, src_seconds):
          f"scale=w='1080*{z}':h='1920*{z}':eval=frame,crop=1080:1920,fps=30,"
          "eq=contrast=1.1:saturation=1.25:brightness=0.01,vignette=PI/5,"
          f"trim=0:{dur:.3f},setpts=PTS-STARTPTS")
+    if seg.get("sharpen"):
+        f += ",unsharp=5:5:0.8:5:5:0.0"
     label = seg.get("label")
     if label:
+        label = re.sub(r"[^\u0000-\uFFFF]|[\u2600-\u27BF\uFE0F]", "", label).strip()
         pathlib.Path(f"lab{i}.txt").write_text(label, encoding="utf-8")
         f += (f",drawtext=fontfile={FONT}:textfile=lab{i}.txt:fontcolor=white:fontsize=44:"
               "x=(w-text_w)/2:y=h*0.64:shadowcolor=black@0.7:shadowx=2:shadowy=2:"
@@ -195,7 +198,10 @@ def montage(job):
     for seg in plan:
         name = seg["clip"]
         if name not in clips:
-            sys.exit(f"Clip nicht gefunden: {name}")
+            hits = [k for k in clips if name.lower() in k.lower()]
+            if not hits:
+                sys.exit(f"Clip nicht gefunden: {name}")
+            seg["clip"] = name = hits[0]
         if name not in files:
             fn = f"in{len(files)}" + (pathlib.Path(name).suffix.lower() if name.lower().endswith(px.VIDEO_EXT) else ".mp4")
             px.drive_download(tok, clips[name]["id"], fn)

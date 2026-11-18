@@ -67,6 +67,7 @@ def drive_list(tok, parent):
         r = requests.get(f"{API}/drive/v3/files", params=p,
                          headers={"Authorization": f"Bearer {tok}"}, timeout=60)
         r.raise_for_status()
+        r.encoding = "utf-8"
         j = r.json()
         files += j.get("files", [])
         page = j.get("nextPageToken")

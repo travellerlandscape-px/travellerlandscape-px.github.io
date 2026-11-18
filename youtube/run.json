@@ -1,1 +1,133 @@
-{"mode": "sichtung", "note": "Auftrag 7: Sichtung Lava (Datei ohne Endung)"}
+{
+ "mode": "montage",
+ "privacy": "private",
+ "note": "Auftrag 8: Lava-Montage Litli-Hrutur",
+ "title": "Iceland volcano: boiling lava up close 🔥 #shorts",
+ "description": "A drone flight over the erupting crater of Litli-Hrútur on Iceland's Reykjanes peninsula, July 2023. Basaltic lava like this is roughly 1,100–1,200 °C hot.\n\n📍 Litli-Hrútur, Reykjanes, Iceland 🇮🇸\n🎵 Music: End Of Time (feat. Tatum Gale) – half.cool (YouTube Audio Library)\n📸 Instagram: @p.x.mgmt\n🔔 Subscribe for more Iceland.\n\n#iceland #volcano #lava #eruption #drone #shorts",
+ "tags": [
+  "Iceland volcano",
+  "volcano",
+  "lava",
+  "eruption",
+  "Litli-Hrutur",
+  "Reykjanes",
+  "Fagradalsfjall",
+  "drone",
+  "Iceland",
+  "shorts"
+ ],
+ "music": "End Of Time (feat. Tatum Gale) - half.cool.mp3",
+ "music_start": 0,
+ "transition": 0.2,
+ "transitions": [
+  "zoomin",
+  "fade",
+  "smoothleft",
+  "fadewhite",
+  "circleopen",
+  "fade"
+ ],
+ "hook": "Inside an erupting volcano 🔥",
+ "cta": "Follow for more Iceland 🌍",
+ "plan": [
+  {
+   "clip": "INSANE Lava",
+   "start": 36.0,
+   "dur": 3.902,
+   "sharpen": true,
+   "speed": 0.8,
+   "zoom": [
+    1.0,
+    1.15
+   ]
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 12.3,
+   "dur": 1.951,
+   "sharpen": true,
+   "label": "Litli-Hrútur, Iceland"
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 31.0,
+   "dur": 1.951,
+   "sharpen": true
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 17.0,
+   "dur": 1.951,
+   "sharpen": true
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 40.5,
+   "dur": 1.951,
+   "sharpen": true,
+   "speed": 0.8,
+   "label": "Lava: about 1,200 °C"
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 2.0,
+   "dur": 1.951,
+   "sharpen": true,
+   "label": "July 2023 eruption"
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 33.5,
+   "dur": 0.976,
+   "sharpen": true
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 38.5,
+   "dur": 0.976,
+   "sharpen": true
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 42.0,
+   "dur": 1.951,
+   "sharpen": true,
+   "speed": 0.8
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 45.5,
+   "dur": 1.951,
+   "sharpen": true
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 23.0,
+   "dur": 1.951,
+   "sharpen": true
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 48.5,
+   "dur": 1.951,
+   "sharpen": true
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 29.5,
+   "dur": 3.902,
+   "sharpen": true,
+   "speed": 0.7
+  },
+  {
+   "clip": "INSANE Lava",
+   "start": 51.0,
+   "dur": 3.902,
+   "sharpen": true,
+   "zoom": [
+    1.1,
+    1.0
+   ]
+  }
+ ]
+}
