@@ -51,3 +51,10 @@ Je Short 5 Varianten erwägen, die stärkste nehmen; Muster im Auftrag notieren,
 - **Standort** in der App: Koordinaten werden angenommen, aber nicht als Ort angezeigt. Versuch mit `place` (Ortsname). Sonst Ort in Beschreibung und Hashtags, App-Feld bei Bedarf von Hand.
 - **Ähnliches Video**: nur in der App möglich.
 - **Playlist**: per Schnittstelle, mit Wiederholung; bei Fehler in der App ergänzen.
+
+## KI-Videos (z. B. Seedance-Demos)
+- Immer als KI-generiert kennzeichnen (`synthetic: true`), Hinweis auch in der Beschreibung.
+- Kategorie Unterhaltung (24), Playlist "AI Videos", kein Ort.
+- 1:1 hochladen (Modus `passthrough`): Hochformat unverändert, Querformat nur mittig auf 9:16 zuschneiden, Originalton bleibt.
+- Tool-Namen (z. B. Seedance 2.0) in Titel, Tags und Hashtags – danach wird gesucht.
+- Höchstens 1 Upload pro Tag; weitere per `publish_at` planen.
