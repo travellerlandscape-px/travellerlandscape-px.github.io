@@ -50,11 +50,18 @@ jobs:
           DRIVE_FOLDER_ID: 1Q95EUFwGKl0k0IIxLlwlsBs1hjYzSmNE
           STORIES_FILE: ${{ github.workspace }}/youtube/stories.json
           STATE_FILE: ${{ github.workspace }}/youtube/state.json
+          RESULT_FILE: ${{ github.workspace }}/youtube/last-run.json
+        shell: bash
         run: |
           mkdir -p work && cd work
-          python3 ../youtube/px.py
+          python3 ../youtube/px.py 2>&1 | tee ../youtube/last-run.log
+          exit ${PIPESTATUS[0]}
       - name: Stand speichern
+        if: always()
         run: |
+          [ -f youtube/last-run.json ] || echo '{"ok": false}' > youtube/last-run.json
+          tail -n 40 youtube/last-run.log > youtube/last-run.txt 2>/dev/null || true
+          git add youtube/last-run.json youtube/last-run.txt 2>/dev/null || true
           git config user.name "px-bot"
           git config user.email "px-bot@users.noreply.github.com"
           git add youtube/state.json 2>/dev/null || true

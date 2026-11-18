@@ -342,6 +342,13 @@ def main():
                                      "date": datetime.datetime.utcnow().strftime("%Y-%m-%d")}
         state_file.parent.mkdir(parents=True, exist_ok=True)
         state_file.write_text(json.dumps(state, indent=1, ensure_ascii=False))
+    rf = os.environ.get("RESULT_FILE")
+    if rf:
+        pathlib.Path(rf).write_text(json.dumps({
+            "ok": True, "url": url, "title": title, "clip": clip["name"],
+            "seconds": round(dur, 1), "privacy": v["status"]["privacyStatus"],
+            "story": bool(story), "time": datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z"},
+            ensure_ascii=False, indent=1))
     summary = os.environ.get("GITHUB_STEP_SUMMARY")
     if summary:
         with open(summary, "a") as f:
