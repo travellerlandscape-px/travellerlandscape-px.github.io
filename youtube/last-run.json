@@ -1,11 +1,9 @@
 {
  "ok": true,
- "mode": "stats",
- "channel": {
-  "title": "P-X Travel",
-  "subscribers": 5,
-  "views": 464,
-  "videos": 8
- },
- "time": "2026-11-18T14:14:45+00:00"
+ "mode": "montage",
+ "url": "https://youtu.be/tQ9ooOfBnxU",
+ "title": "This lava is over 1,100 °C 🔥 Iceland volcano #shorts",
+ "seconds": 17.5,
+ "privacy": "private",
+ "time": "2026-11-18T14:21:45+00:00"
 }
