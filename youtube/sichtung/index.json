@@ -1,0 +1,153 @@
+{
+ "date": "2026-11-18 00:55",
+ "clips": [
+  {
+   "seconds": 6.47,
+   "width": 2160,
+   "height": 3840,
+   "fps": 30.0,
+   "gps": "+64.7514-023.6512+052.022/",
+   "created": "2024-06-01T15:26:18.000000Z",
+   "device": "iPhone 14 Pro",
+   "frames_at": [
+    0.5,
+    1.6,
+    2.7,
+    3.8,
+    4.9,
+    5.9
+   ],
+   "name": "church_iceland.MOV",
+   "id": "1Z7V1mRn1cMUlfAoXUTpDBZ7Nw7efNs7F",
+   "sheet": "church_iceland.jpg",
+   "mb": 22.0
+  },
+  {
+   "seconds": 15.23,
+   "width": 2160,
+   "height": 3840,
+   "fps": 30.0,
+   "gps": "+64.7808-023.6835+290.643/",
+   "created": "2024-06-01T15:51:53.000000Z",
+   "device": "iPhone 14 Pro",
+   "frames_at": [
+    1.3,
+    3.8,
+    6.3,
+    8.9,
+    11.4,
+    14.0
+   ],
+   "name": "mountains_iceland.MOV",
+   "id": "1KSxRa1u8sOcFvL7TPFPf_Z3Dlj3Y2YUy",
+   "sheet": "mountains_iceland.jpg",
+   "mb": 49.5
+  },
+  {
+   "seconds": 18.5,
+   "width": 2160,
+   "height": 3840,
+   "fps": 30.0,
+   "gps": "+64.9262-023.3108+012.526/",
+   "created": "2024-06-01T16:59:25.000000Z",
+   "device": "iPhone 14 Pro",
+   "frames_at": [
+    1.5,
+    4.6,
+    7.7,
+    10.8,
+    13.9,
+    17.0
+   ],
+   "name": "mountainwaterfall.MOV",
+   "id": "1XaXd4n6frWJhJcT5giMYdseBt_k-Y8a3",
+   "sheet": "mountainwaterfall.jpg",
+   "mb": 108.2
+  },
+  {
+   "seconds": 16.17,
+   "width": 2160,
+   "height": 3840,
+   "fps": 30.0,
+   "gps": "+64.9259-023.3119+024.509/",
+   "created": "2024-06-01T16:57:07.000000Z",
+   "device": "iPhone 14 Pro",
+   "frames_at": [
+    1.3,
+    4.0,
+    6.7,
+    9.4,
+    12.1,
+    14.8
+   ],
+   "name": "waterfall-iceland.MOV",
+   "id": "1aoSGUEEMaO7-soYaYVdZvqqCshaiB04K",
+   "sheet": "waterfall-iceland.jpg",
+   "mb": 73.2
+  },
+  {
+   "seconds": 10.01,
+   "width": 2160,
+   "height": 3840,
+   "fps": 60.0,
+   "gps": "",
+   "created": "2024-06-03T07:52:32Z",
+   "device": "Lavf57.71.100",
+   "frames_at": [
+    0.8,
+    2.5,
+    4.2,
+    5.8,
+    7.5,
+    9.2
+   ],
+   "name": "waterfall_iceland.MOV",
+   "id": "1F6jKsUTDAMnpLMr3zkDaVfgb9A7rHzEu",
+   "sheet": "waterfall_iceland.jpg",
+   "mb": 58.3
+  },
+  {
+   "seconds": 18.17,
+   "width": 2160,
+   "height": 3840,
+   "fps": 30.0,
+   "gps": "+64.9262-023.3108+012.205/",
+   "created": "2024-06-01T16:59:01.000000Z",
+   "device": "iPhone 14 Pro",
+   "frames_at": [
+    1.5,
+    4.5,
+    7.6,
+    10.6,
+    13.6,
+    16.7
+   ],
+   "name": "waterfalliceland.MOV",
+   "id": "1P5eZYV2VlNPcY4yZEBKqtrLPEkiT_Wt7",
+   "sheet": "waterfalliceland.jpg",
+   "mb": 79.7
+  }
+ ],
+ "music": [
+  {
+   "name": "Dripped Out - Blue Deer Studio.mp3",
+   "seconds": 148.163288,
+   "bpm": 99.4
+  },
+  {
+   "name": "Cutscene Crush - Blue Deer Studio.mp3",
+   "seconds": 108.220862,
+   "bpm": 107.7
+  },
+  {
+   "name": "End Of Time (feat. Tatum Gale) - half.cool.mp3",
+   "seconds": 242.608707,
+   "bpm": 123.0
+  },
+  {
+   "name": "Fly Away - The Soundlings.mp3",
+   "seconds": 189.75,
+   "bpm": 95.7
+  }
+ ]
+}

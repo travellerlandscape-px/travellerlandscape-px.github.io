@@ -1,7 +1,11 @@
-Clips: 6 gesamt, 6 offen. Musiktitel: 4.
-Clip: church_iceland.MOV -> Titel: This tiny Icelandic church hides a Viking story 🇮🇸 #shorts (Story-Modus)
-Musik: End Of Time (feat. Tatum Gale) - half.cool.mp3
-Gerendert: 16.4 s, 17.9 MB
-Hochgeladen: https://youtu.be/QHEzHWpzvwQ (Status: private)
-/home/runner/work/travellerlandscape-px.github.io/travellerlandscape-px.github.io/work/../youtube/px.py:358: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
-  "story": bool(story), "time": datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z"},
+Clip: church_iceland.MOV 6.47 s 2160x3840 GPS=+64.7514-023.6512+052.022/
+Clip: mountains_iceland.MOV 15.23 s 2160x3840 GPS=+64.7808-023.6835+290.643/
+Clip: mountainwaterfall.MOV 18.5 s 2160x3840 GPS=+64.9262-023.3108+012.526/
+Clip: waterfall-iceland.MOV 16.17 s 2160x3840 GPS=+64.9259-023.3119+024.509/
+Clip: waterfall_iceland.MOV 10.01 s 2160x3840 GPS=
+Clip: waterfalliceland.MOV 18.17 s 2160x3840 GPS=+64.9262-023.3108+012.205/
+Musik: Dripped Out - Blue Deer Studio.mp3 148 s, ca. 99.4 BPM
+Musik: Cutscene Crush - Blue Deer Studio.mp3 108 s, ca. 107.7 BPM
+Musik: End Of Time (feat. Tatum Gale) - half.cool.mp3 243 s, ca. 123.0 BPM
+Musik: Fly Away - The Soundlings.mp3 190 s, ca. 95.7 BPM
+{"ok": true, "mode": "sichtung", "clips": 6, "music": 4, "time": "2026-11-18T00:56:17+00:00"}
