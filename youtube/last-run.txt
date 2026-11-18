@@ -1,1 +1,15 @@
-{"ok": true, "mode": "sichtung", "clips": 6, "music": 4, "time": "2026-11-18T01:38:18+00:00"}
+Drive: /musik (application/vnd.google-apps.folder, 0.0 MB)
+Drive: /musik/Dripped Out - Blue Deer Studio.mp3 (audio/mpeg, 5.9 MB)
+Drive: /musik/Cutscene Crush - Blue Deer Studio.mp3 (audio/mpeg, 4.3 MB)
+Drive: /musik/End Of Time (feat. Tatum Gale) - half.cool.mp3 (audio/mpeg, 9.7 MB)
+Drive: /musik/Fly Away - The Soundlings.mp3 (audio/mpeg, 7.6 MB)
+Drive: /fotos (application/vnd.google-apps.folder, 0.0 MB)
+Drive: /clips (application/vnd.google-apps.folder, 0.0 MB)
+Drive: /clips/INSANE Lava Flow from 2023 Iceland Volcano â Litli-HrÃºtur Eruption (video/mp4, 15.3 MB)
+Drive: /clips/mountainwaterfall.MOV (video/quicktime, 108.2 MB)
+Drive: /clips/waterfalliceland.MOV (video/quicktime, 79.7 MB)
+Drive: /clips/waterfall-iceland.MOV (video/quicktime, 73.2 MB)
+Drive: /clips/mountains_iceland.MOV (video/quicktime, 49.5 MB)
+Drive: /clips/church_iceland.MOV (video/quicktime, 22.0 MB)
+Drive: /clips/waterfall_iceland.MOV (video/quicktime, 58.3 MB)
+{"ok": true, "mode": "sichtung", "clips": 6, "music": 4, "time": "2026-11-18T01:39:27+00:00"}
