@@ -60,7 +60,7 @@ jobs:
         if: always()
         run: |
           [ -f youtube/last-run.json ] || echo '{"ok": false}' > youtube/last-run.json
-          tail -n 40 youtube/last-run.log > youtube/last-run.txt 2>/dev/null || true
+          grep -v '^::' youtube/last-run.log | tail -n 40 > youtube/last-run.txt 2>/dev/null || true; rm -f youtube/last-run.log
           git add youtube/last-run.json youtube/last-run.txt 2>/dev/null || true
           git config user.name "px-bot"
           git config user.email "px-bot@users.noreply.github.com"
