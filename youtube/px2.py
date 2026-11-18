@@ -116,12 +116,12 @@ def sichtung():
     idx = {"date": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M"),
            "clips": [], "music": []}
     for c in sorted(px.drive_list(tok, sub["clips"]), key=lambda f: f["name"].lower()):
-        if not c["name"].lower().endswith(px.VIDEO_EXT):
+        if not (c["name"].lower().endswith(px.VIDEO_EXT) or c.get("mimeType", "").startswith("video/")):
             continue
         if c["id"] in old and (OUT / old[c["id"]]["sheet"]).exists():
             idx["clips"].append(old[c["id"]])
             continue
-        src = "clip" + pathlib.Path(c["name"]).suffix.lower()
+        src = "clip" + (pathlib.Path(c["name"]).suffix.lower() if c["name"].lower().endswith(px.VIDEO_EXT) else ".mp4")
         px.drive_download(tok, c["id"], src)
         info = probe(src)
         sheet = OUT / f"{safe(c['name'])}.jpg"
@@ -197,7 +197,7 @@ def montage(job):
         if name not in clips:
             sys.exit(f"Clip nicht gefunden: {name}")
         if name not in files:
-            fn = f"in{len(files)}" + pathlib.Path(name).suffix.lower()
+            fn = f"in{len(files)}" + (pathlib.Path(name).suffix.lower() if name.lower().endswith(px.VIDEO_EXT) else ".mp4")
             px.drive_download(tok, clips[name]["id"], fn)
             files[name], srcdur[name] = fn, px.probe_duration(fn)
     music = None
