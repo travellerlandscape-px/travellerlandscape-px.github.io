@@ -327,11 +327,16 @@ def add_to_playlist(tok, video_id, name):
             log(f"Hinweis: Playlist nicht angelegt ({r.status_code})")
             return None
         pid = r.json()["id"]
-    r = requests.post(f"{API}/youtube/v3/playlistItems", params={"part": "snippet"}, headers=h,
-                      json={"snippet": {"playlistId": pid,
-                                        "resourceId": {"kind": "youtube#video", "videoId": video_id}}},
-                      timeout=60)
-    log(f"Playlist '{name}': {'ok' if r.status_code == 200 else r.status_code}")
+    import time
+    for attempt in range(4):  # frisch angelegte Playlists/Videos brauchen manchmal etwas Zeit
+        r = requests.post(f"{API}/youtube/v3/playlistItems", params={"part": "snippet"}, headers=h,
+                          json={"snippet": {"playlistId": pid,
+                                            "resourceId": {"kind": "youtube#video", "videoId": video_id}}},
+                          timeout=60)
+        if r.status_code == 200:
+            break
+        time.sleep(20)
+    log(f"Playlist '{name}': {'ok' if r.status_code == 200 else str(r.status_code) + ' ' + r.text[:200]}")
     return pid
 
 
