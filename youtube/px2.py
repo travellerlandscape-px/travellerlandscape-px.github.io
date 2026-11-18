@@ -252,10 +252,89 @@ def montage(job):
             "seconds": round(total, 1), "privacy": v["status"]["privacyStatus"]}
 
 
+def yt_get(tok, path, params):
+    import requests
+    r = requests.get(f"https://www.googleapis.com/youtube/v3/{path}", params=params,
+                     headers={"Authorization": f"Bearer {tok}"}, timeout=60)
+    r.raise_for_status()
+    return r.json()
+
+
+def stats():
+    """Alle Videos des Kanals mit Aufrufen, Likes, Kommentaren; dazu Analytics (Wiedergabedauer)."""
+    import requests
+    tok = px.token()
+    ch = yt_get(tok, "channels", {"part": "snippet,statistics,contentDetails", "mine": "true"})["items"][0]
+    uploads = ch["contentDetails"]["relatedPlaylists"]["uploads"]
+    ids, page = [], None
+    while True:
+        p = {"part": "contentDetails", "playlistId": uploads, "maxResults": 50}
+        if page:
+            p["pageToken"] = page
+        j = yt_get(tok, "playlistItems", p)
+        ids += [it["contentDetails"]["videoId"] for it in j.get("items", [])]
+        page = j.get("nextPageToken")
+        if not page:
+            break
+    vids = []
+    for k in range(0, len(ids), 50):
+        j = yt_get(tok, "videos", {"part": "snippet,statistics,contentDetails,status",
+                                   "id": ",".join(ids[k:k + 50])})
+        for v in j.get("items", []):
+            st = v.get("statistics", {})
+            vids.append({"id": v["id"], "title": v["snippet"]["title"],
+                         "published": v["snippet"].get("publishedAt", ""),
+                         "duration": v["contentDetails"].get("duration", ""),
+                         "privacy": v["status"].get("privacyStatus", ""),
+                         "views": int(st.get("viewCount", 0)), "likes": int(st.get("likeCount", 0)),
+                         "comments": int(st.get("commentCount", 0))})
+    # Analytics: Wiedergabedauer je Video (Daten kommen mit 1-2 Tagen Verzoegerung)
+    ana = {}
+    try:
+        end = datetime.date.today().isoformat()
+        r = requests.get("https://youtubeanalytics.googleapis.com/v2/reports", params={
+            "ids": "channel==MINE", "startDate": "2020-01-01", "endDate": end,
+            "metrics": "views,estimatedMinutesWatched,averageViewDuration,averageViewPercentage,subscribersGained",
+            "dimensions": "video", "sort": "-views", "maxResults": 200},
+            headers={"Authorization": f"Bearer {tok}"}, timeout=60)
+        r.raise_for_status()
+        j = r.json()
+        cols = [h["name"] for h in j.get("columnHeaders", [])]
+        for row in j.get("rows", []) or []:
+            d = dict(zip(cols, row))
+            ana[d["video"]] = d
+    except Exception as e:
+        px.log(f"Hinweis: Analytics nicht verfuegbar ({e})")
+    for v in vids:
+        a = ana.get(v["id"])
+        if a:
+            v.update({"avg_view_seconds": a.get("averageViewDuration"),
+                      "avg_view_percent": round(float(a.get("averageViewPercentage", 0)), 1),
+                      "minutes_watched": a.get("estimatedMinutesWatched"),
+                      "subs_gained": a.get("subscribersGained")})
+    out = {"time": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+           "channel": {"title": ch["snippet"]["title"],
+                       "subscribers": int(ch["statistics"].get("subscriberCount", 0)),
+                       "views": int(ch["statistics"].get("viewCount", 0)),
+                       "videos": int(ch["statistics"].get("videoCount", 0))},
+           "videos": sorted(vids, key=lambda v: v["published"], reverse=True)}
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    (OUT.parent / "stats.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    for v in out["videos"]:
+        px.log(f"{v['published'][:10]} {v['views']:>6} Aufrufe {v['likes']:>3} Likes "
+               f"{v.get('avg_view_percent', '-')}% | {v['title'][:60]} ({v['privacy']})")
+    return {"ok": True, "mode": "stats", "channel": out["channel"]}
+
+
 def main():
     job = json.loads(pathlib.Path(os.environ.get("RUN_FILE", "../youtube/run.json")).read_text())
     mode = job.get("mode")
-    res = sichtung() if mode == "sichtung" else montage(job)
+    if mode == "sichtung":
+        res = sichtung()
+    elif mode == "stats":
+        res = stats()
+    else:
+        res = montage(job)
     res["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
     rf = os.environ.get("RESULT_FILE")
     if rf:

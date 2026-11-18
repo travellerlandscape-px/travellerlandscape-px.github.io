@@ -55,7 +55,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p work && cd work
-          if [ "$MODE" = "sichtung" ] || [ "$MODE" = "montage" ]; then
+          if [ "$MODE" = "sichtung" ] || [ "$MODE" = "montage" ] || [ "$MODE" = "stats" ]; then
             PYTHONPATH=../youtube python3 ../youtube/px2.py 2>&1 | tee ../youtube/last-run.log
           else
             python3 ../youtube/px.py 2>&1 | tee ../youtube/last-run.log
@@ -66,7 +66,7 @@ jobs:
         run: |
           [ -f youtube/last-run.json ] || echo '{"ok": false}' > youtube/last-run.json
           grep -v '^::' youtube/last-run.log | tail -n 40 > youtube/last-run.txt 2>/dev/null || true; rm -f youtube/last-run.log
-          git add youtube/last-run.json youtube/last-run.txt youtube/sichtung 2>/dev/null || true
+          git add youtube/last-run.json youtube/last-run.txt youtube/sichtung youtube/stats.json 2>/dev/null || true
           git config user.name "px-bot"
           git config user.email "px-bot@users.noreply.github.com"
           git add youtube/state.json 2>/dev/null || true
