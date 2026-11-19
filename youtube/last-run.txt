@@ -1,5 +1,7 @@
-Iceland Has Two Moods 🇮🇸: [{"views": 0, "engagedViews": 0, "estimatedMinutesWatched": 0, "averageViewDuration": 0, "averageViewPercentage": 0, "likes": 0, "dislikes": 0, "comments": 0, "shares": 0, "subscribersGained": 0, "subscribersLost": 0}]
-Iceland volcano: boiling lava up close 🔥 #shorts: [{"views": 0, "engagedViews": 0, "estimatedMinutesWatched": 0, "averageViewDuration": 0, "averageViewPercentage": 0, "likes": 0, "dislikes": 0, "comments": 0, "shares": 0, "subscribersGained": 0, "subscribersLost": 0}]
-Iceland doesn't look real 🇮🇸 Snæfellsnes in 30 sec: [{"views": 0, "engagedViews": 0, "estimatedMinutesWatched": 0, "averageViewDuration": 0, "averageViewPercentage": 0, "likes": 0, "dislikes": 0, "comments": 0, "shares": 0, "subscribersGained": 0, "subscribersLost": 0}]
-This tiny Icelandic church hides a Viking story 🇮🇸: [{"views": 0, "engagedViews": 0, "estimatedMinutesWatched": 0, "averageViewDuration": 0, "averageViewPercentage": 0, "likes": 0, "dislikes": 0, "comments": 0, "shares": 0, "subscribersGained": 0, "subscribersLost": 0}]
-{"ok": true, "mode": "fullstats", "videos": 4, "time": "2026-11-19T15:56:10+00:00"}
+tage_mine: HTTP 200 rows=[]
+tage_id: HTTP 200 rows=[]
+videos_30d: HTTP 200 rows=[]
+gesamt_30d: HTTP 200 rows=[[0, 0, 0]]
+traffic_30d: HTTP 200 rows=[]
+creatortype: HTTP 200 rows=[]
+{"ok": true, "mode": "probe", "time": "2026-11-19T16:06:44+00:00"}
