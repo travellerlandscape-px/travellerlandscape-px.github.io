@@ -64,3 +64,10 @@ Je Short 5 Varianten erwägen, die stärkste nehmen; Muster im Auftrag notieren,
 - 1:1 hochladen (Modus `passthrough`): Hochformat unverändert, Querformat nur mittig auf 9:16 zuschneiden, Originalton bleibt.
 - Tool-Namen (z. B. Seedance 2.0) in Titel, Tags und Hashtags – danach wird gesucht.
 - Höchstens 1 Upload pro Tag; weitere per `publish_at` planen.
+
+## Zielgruppe (Studio-App, Stand 19.11.2026, 28 Tage, ca. 550 Zuschauer)
+- 53 % USA, Rest verstreut → Englisch bleibt richtig.
+- Alter: 25–34 30 %, 35–44 28 %, 45–54 14 %, 55–64 15 %, 65+ 14 %, unter 25: 0 % → ruhige, informative Reise-Storys statt Jugend-Trends.
+- 63 % männlich, 37 % weiblich; 84 % Handy.
+- 99,8 % neue Zuschauer, praktisch keine Wiederkehrer → Serienformat und feste Uhrzeit, um Stammzuschauer aufzubauen.
+- Veröffentlichungszeit: US-Nachmittag/-Abend (ca. 01:00–05:00 Uhr Dubai); per `publish_at` planbar.
