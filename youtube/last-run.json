@@ -1,5 +1,11 @@
 {
  "ok": true,
- "mode": "diagnose",
- "time": "2026-11-18T18:01:05+00:00"
+ "mode": "stats",
+ "channel": {
+  "title": "P-X Travel",
+  "subscribers": 5,
+  "views": 2446,
+  "videos": 4
+ },
+ "time": "2026-11-19T12:36:42+00:00"
 }
