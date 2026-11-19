@@ -524,6 +524,55 @@ def diagnose(job):
     return {"ok": True, "mode": "diagnose"}
 
 
+def fullstats(job):
+    """Vollstaendige Analytics je Video: Kennzahlen, Zuschauerbindungskurve, Traffic-Quellen,
+    Laender, Alter/Geschlecht, Geraete. Jede Abfrage einzeln, damit ein Fehler nicht alles stoppt."""
+    import requests
+    tok = px.token()
+    ch = yt_get(tok, "channels", {"part": "snippet,statistics,contentDetails", "mine": "true"})["items"][0]
+    uploads = ch["contentDetails"]["relatedPlaylists"]["uploads"]
+    items = yt_get(tok, "playlistItems", {"part": "snippet,contentDetails", "playlistId": uploads,
+                                          "maxResults": 25})["items"]
+    vids = {it["contentDetails"]["videoId"]: it["snippet"]["title"] for it in items}
+    end = datetime.date.today().isoformat()
+    def q(params):
+        p = {"ids": "channel==MINE", "startDate": "2023-01-01", "endDate": end}
+        p.update(params)
+        r = requests.get("https://youtubeanalytics.googleapis.com/v2/reports", params=p,
+                         headers={"Authorization": f"Bearer {tok}"}, timeout=60)
+        if r.status_code != 200:
+            return {"error": f"{r.status_code} {r.text[:160]}"}
+        j = r.json()
+        cols = [h["name"] for h in j.get("columnHeaders", [])]
+        return [dict(zip(cols, row)) for row in j.get("rows", []) or []]
+    out = {"time": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+           "channel": {"title": ch["snippet"]["title"], **ch["statistics"]}, "videos": {}}
+    base_metrics = ("views,engagedViews,estimatedMinutesWatched,averageViewDuration,averageViewPercentage,"
+                    "likes,dislikes,comments,shares,subscribersGained,subscribersLost")
+    for vid, title in vids.items():
+        f = {"filters": f"video=={vid}"}
+        d = {"title": title}
+        m = q({"metrics": base_metrics, **f})
+        if isinstance(m, dict):  # engagedViews evtl. nicht verfuegbar
+            m = q({"metrics": base_metrics.replace("engagedViews,", ""), **f})
+        d["totals"] = m
+        d["retention"] = q({"metrics": "audienceWatchRatio,relativeRetentionPerformance",
+                            "dimensions": "elapsedVideoTimeRatio", **f})
+        d["traffic"] = q({"metrics": "views,estimatedMinutesWatched", "dimensions": "insightTrafficSourceType",
+                          "sort": "-views", **f})
+        d["countries"] = q({"metrics": "views,averageViewPercentage", "dimensions": "country",
+                            "sort": "-views", "maxResults": 10, **f})
+        d["demographics"] = q({"metrics": "viewerPercentage", "dimensions": "ageGroup,gender", **f})
+        d["devices"] = q({"metrics": "views", "dimensions": "deviceType", "sort": "-views", **f})
+        d["days"] = q({"metrics": "views,averageViewPercentage", "dimensions": "day", "sort": "day", **f})
+        out["videos"][vid] = d
+        px.log(f"{title[:50]}: {json.dumps(m, ensure_ascii=False)[:300]}")
+    out["channel_days"] = q({"metrics": "views,subscribersGained", "dimensions": "day", "sort": "day",
+                             "startDate": (datetime.date.today() - datetime.timedelta(days=7)).isoformat()})
+    (OUT.parent / "fullstats.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    return {"ok": True, "mode": "fullstats", "videos": len(vids)}
+
+
 def main():
     job = json.loads(pathlib.Path(os.environ.get("RUN_FILE", "../youtube/run.json")).read_text())
     mode = job.get("mode")
@@ -539,6 +588,8 @@ def main():
         res = update(job)
     elif mode == "diagnose":
         res = diagnose(job)
+    elif mode == "fullstats":
+        res = fullstats(job)
     else:
         res = montage(job)
     res["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
