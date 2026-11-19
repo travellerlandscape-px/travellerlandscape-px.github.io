@@ -1,5 +1,5 @@
-2026-11-19    252 Aufrufe   4 Likes -% | Iceland Has Two Moods 🇮🇸 (public)
-2026-11-18    320 Aufrufe   1 Likes -% | Iceland volcano: boiling lava up close 🔥 #shorts (public)
-2026-11-18    868 Aufrufe  16 Likes -% | Iceland doesn't look real 🇮🇸 Snæfellsnes in 30 seconds #shor (public)
-2026-11-18   1077 Aufrufe  20 Likes -% | This tiny Icelandic church hides a Viking story 🇮🇸 #shorts (public)
-{"ok": true, "mode": "stats", "channel": {"title": "P-X Travel", "subscribers": 5, "views": 2446, "videos": 4}, "time": "2026-11-19T12:36:42+00:00"}
+Iceland Has Two Moods 🇮🇸: [{"views": 0, "engagedViews": 0, "estimatedMinutesWatched": 0, "averageViewDuration": 0, "averageViewPercentage": 0, "likes": 0, "dislikes": 0, "comments": 0, "shares": 0, "subscribersGained": 0, "subscribersLost": 0}]
+Iceland volcano: boiling lava up close 🔥 #shorts: [{"views": 0, "engagedViews": 0, "estimatedMinutesWatched": 0, "averageViewDuration": 0, "averageViewPercentage": 0, "likes": 0, "dislikes": 0, "comments": 0, "shares": 0, "subscribersGained": 0, "subscribersLost": 0}]
+Iceland doesn't look real 🇮🇸 Snæfellsnes in 30 sec: [{"views": 0, "engagedViews": 0, "estimatedMinutesWatched": 0, "averageViewDuration": 0, "averageViewPercentage": 0, "likes": 0, "dislikes": 0, "comments": 0, "shares": 0, "subscribersGained": 0, "subscribersLost": 0}]
+This tiny Icelandic church hides a Viking story 🇮🇸: [{"views": 0, "engagedViews": 0, "estimatedMinutesWatched": 0, "averageViewDuration": 0, "averageViewPercentage": 0, "likes": 0, "dislikes": 0, "comments": 0, "shares": 0, "subscribersGained": 0, "subscribersLost": 0}]
+{"ok": true, "mode": "fullstats", "videos": 4, "time": "2026-11-19T15:56:10+00:00"}
