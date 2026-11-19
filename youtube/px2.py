@@ -606,6 +606,36 @@ def probe(job):
     return {"ok": True, "mode": "probe"}
 
 
+def review(job):
+    """Eigenes YouTube-Video laden, Standbilder ziehen, Sprechtext transkribieren."""
+    url = job["url"]
+    outdir = OUT.parent / "review"
+    outdir.mkdir(parents=True, exist_ok=True)
+    r = subprocess.run(["yt-dlp", "-f", "best[ext=mp4]/best", "-o", "rv.%(ext)s", url],
+                       capture_output=True, text=True)
+    px.log(r.stdout[-500:] + r.stderr[-800:])
+    src = next((f for f in os.listdir(".") if f.startswith("rv.")), None)
+    if not src:
+        return {"ok": False, "mode": "review", "error": "Download fehlgeschlagen"}
+    info = probe(src)
+    sheet = outdir / "frames.jpg"
+    times = contact_sheet(src, info["seconds"], sheet, 12)
+    # Ton transkribieren (Whisper auf CPU)
+    words = []
+    try:
+        from faster_whisper import WhisperModel
+        model = WhisperModel("small.en", device="cpu", compute_type="int8")
+        segs, _ = model.transcribe(src, word_timestamps=False)
+        words = [{"start": round(s.start, 1), "end": round(s.end, 1), "text": s.text.strip()} for s in segs]
+    except Exception as e:
+        words = [{"error": str(e)}]
+    res = {"ok": True, "mode": "review", "info": info, "frames_at": times, "transcript": words}
+    (outdir / "review.json").write_text(json.dumps(res, indent=1, ensure_ascii=False))
+    for w in words:
+        px.log(f"Text: {w}")
+    return {"ok": True, "mode": "review", "seconds": info["seconds"], "w": info["width"], "h": info["height"]}
+
+
 def main():
     job = json.loads(pathlib.Path(os.environ.get("RUN_FILE", "../youtube/run.json")).read_text())
     mode = job.get("mode")
@@ -625,6 +655,8 @@ def main():
         res = fullstats(job)
     elif mode == "probe":
         res = probe(job)
+    elif mode == "review":
+        res = review(job)
     else:
         res = montage(job)
     res["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
