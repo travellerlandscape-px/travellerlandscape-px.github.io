@@ -608,13 +608,27 @@ def probe(job):
 
 def review(job):
     """Eigenes YouTube-Video laden, Standbilder ziehen, Sprechtext transkribieren."""
-    url = job["url"]
     outdir = OUT.parent / "review"
     outdir.mkdir(parents=True, exist_ok=True)
-    r = subprocess.run(["yt-dlp", "-f", "best[ext=mp4]/best", "-o", "rv.%(ext)s", url],
-                       capture_output=True, text=True)
-    px.log(r.stdout[-500:] + r.stderr[-800:])
-    src = next((f for f in os.listdir(".") if f.startswith("rv.")), None)
+    src = None
+    if job.get("clip"):  # Datei aus Drive (fertig/clips)
+        tok = px.token()
+        sub = {f["name"].lower(): f["id"] for f in px.drive_list(tok, os.environ["DRIVE_FOLDER_ID"])
+               if f["mimeType"] == "application/vnd.google-apps.folder"}
+        files = {}
+        for folder in ("fertig", "clips"):
+            if folder in sub:
+                for c in px.drive_list(tok, sub[folder]):
+                    files.setdefault(c["name"], c)
+        hits = [k for k in files if job["clip"].lower() in k.lower()]
+        if hits:
+            src = "rv.mp4"
+            px.drive_download(tok, files[hits[0]]["id"], src)
+    elif job.get("url"):
+        r = subprocess.run(["yt-dlp", "-f", "best[ext=mp4]/best", "-o", "rv.%(ext)s", job["url"]],
+                           capture_output=True, text=True)
+        px.log(r.stdout[-500:] + r.stderr[-800:])
+        src = next((f for f in os.listdir(".") if f.startswith("rv.")), None)
     if not src:
         return {"ok": False, "mode": "review", "error": "Download fehlgeschlagen"}
     info = probe(src)
