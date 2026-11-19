@@ -573,6 +573,39 @@ def fullstats(job):
     return {"ok": True, "mode": "fullstats", "videos": len(vids)}
 
 
+def probe(job):
+    """Rohantworten der Analytics-Schnittstelle protokollieren (Fehlersuche)."""
+    import requests
+    tok = px.token()
+    ch = yt_get(tok, "channels", {"part": "id", "mine": "true"})["items"][0]["id"]
+    today = datetime.date.today()
+    tests = [
+        ("tage_mine", {"ids": "channel==MINE", "metrics": "views", "dimensions": "day",
+                       "startDate": (today - datetime.timedelta(days=10)).isoformat(), "endDate": today.isoformat()}),
+        ("tage_id", {"ids": f"channel=={ch}", "metrics": "views", "dimensions": "day",
+                     "startDate": (today - datetime.timedelta(days=10)).isoformat(), "endDate": today.isoformat()}),
+        ("videos_30d", {"ids": "channel==MINE", "metrics": "views,averageViewPercentage,averageViewDuration",
+                        "dimensions": "video", "sort": "-views", "maxResults": 20,
+                        "startDate": (today - datetime.timedelta(days=30)).isoformat(), "endDate": today.isoformat()}),
+        ("gesamt_30d", {"ids": "channel==MINE", "metrics": "views,estimatedMinutesWatched,subscribersGained",
+                        "startDate": (today - datetime.timedelta(days=30)).isoformat(), "endDate": today.isoformat()}),
+        ("traffic_30d", {"ids": "channel==MINE", "metrics": "views", "dimensions": "insightTrafficSourceType",
+                         "startDate": (today - datetime.timedelta(days=30)).isoformat(), "endDate": today.isoformat()}),
+        ("creatortype", {"ids": "channel==MINE", "metrics": "views,averageViewPercentage",
+                         "dimensions": "creatorContentType",
+                         "startDate": (today - datetime.timedelta(days=30)).isoformat(), "endDate": today.isoformat()}),
+    ]
+    res = {"channel_id": ch}
+    for name, p in tests:
+        r = requests.get("https://youtubeanalytics.googleapis.com/v2/reports", params=p,
+                         headers={"Authorization": f"Bearer {tok}"}, timeout=60)
+        res[name] = {"status": r.status_code, "body": r.json() if r.headers.get("content-type", "").startswith("application/json") else r.text[:300]}
+        rows = res[name]["body"].get("rows") if isinstance(res[name]["body"], dict) else None
+        px.log(f"{name}: HTTP {r.status_code} rows={rows}")
+    (OUT.parent / "probe.json").write_text(json.dumps(res, indent=1, ensure_ascii=False))
+    return {"ok": True, "mode": "probe"}
+
+
 def main():
     job = json.loads(pathlib.Path(os.environ.get("RUN_FILE", "../youtube/run.json")).read_text())
     mode = job.get("mode")
@@ -590,6 +623,8 @@ def main():
         res = diagnose(job)
     elif mode == "fullstats":
         res = fullstats(job)
+    elif mode == "probe":
+        res = probe(job)
     else:
         res = montage(job)
     res["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
