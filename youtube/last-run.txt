@@ -1,7 +1,10 @@
-tage_mine: HTTP 200 rows=[]
-tage_id: HTTP 200 rows=[]
-videos_30d: HTTP 200 rows=[]
-gesamt_30d: HTTP 200 rows=[[0, 0, 0]]
-traffic_30d: HTTP 200 rows=[]
-creatortype: HTTP 200 rows=[]
-{"ok": true, "mode": "probe", "time": "2026-11-19T16:06:44+00:00"}
+[youtube] Extracting URL: https://youtube.com/shorts/KQN5UTBOxTw
+[youtube] KQN5UTBOxTw: Downloading webpage
+[youtube] KQN5UTBOxTw: Downloading initial data API JSON
+[youtube] KQN5UTBOxTw: Downloading visionos player API JSON
+ad API page: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one
+WARNING: [youtube] KQN5UTBOxTw: Unable to download API page: HTTP Error 403: Forbidden (caused by <HTTPError 403: Forbidden>)
+ERROR: [youtube] KQN5UTBOxTw: Failed to extract any player response; please report this issue on  https://github.com/yt-dlp/yt-dlp/issues?q= , filling out the appropriate issue template. Confirm you are on the latest version using  yt-dlp -U
+
+{"ok": false, "mode": "review", "error": "Download fehlgeschlagen", "time": "2026-11-19T23:38:57+00:00"}
