@@ -71,3 +71,6 @@ Je Short 5 Varianten erwägen, die stärkste nehmen; Muster im Auftrag notieren,
 - 63 % männlich, 37 % weiblich; 84 % Handy.
 - 99,8 % neue Zuschauer, praktisch keine Wiederkehrer → Serienformat und feste Uhrzeit, um Stammzuschauer aufzubauen.
 - Veröffentlichungszeit: US-Nachmittag/-Abend (ca. 01:00–05:00 Uhr Dubai); per `publish_at` planbar.
+
+## Sprache (Entscheidung 20.11.2026)
+- Nur Englisch. Deutsche Seedance-Fassung getestet und verworfen (Qualität schlecht).
